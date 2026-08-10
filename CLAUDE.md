@@ -53,6 +53,33 @@ that is a reason to check it against this section, not a reason to ship it.
   deploys so rsync never uploads or deletes them.
 - The client never holds the API key and cannot supply its own system prompt.
 
+## This folder is inside OneDrive — read before editing files
+
+`C:\Users\al\OneDrive\Documents\Vibe Coding\ashvand` is OneDrive-synced. Two open,
+unfixed data-loss bugs affect Claude Code on Windows in synced folders:
+
+- **anthropics/claude-code#62140** — with Files-On-Demand on, tools can read a
+  placeholder stub instead of the real file, then write the truncated version back.
+- **anthropics/claude-code#65229** — the Edit tool sometimes deletes-then-renames;
+  OneDrive reads the gap as a real deletion and propagates it to the cloud.
+
+`index.html` is ~64 KB and is the entire site. It fits the profile of both bugs.
+
+**Therefore, in this repo:**
+
+1. **Verify size after every edit to `index.html` or `daanaa.php`.** Run
+   `git diff --stat` immediately. A truncation shows up as an implausibly large
+   deletion count. If you see one, `git checkout -- <file>` and stop.
+2. **Never leave an edit uncommitted overnight.** The committed object is the only
+   reliable copy; the working tree is not.
+3. Prefer whole-file writes over many small edits when touching `index.html`, to
+   narrow the window the race in #65229 needs.
+4. If the working tree looks wrong in a way git cannot explain, the recovery order
+   is: `git checkout` from HEAD, then GitHub, then the OneDrive recycle bin.
+
+Al's mitigations: `Always keep on this device` is set on this folder, and OneDrive
+sync is paused during editing sessions.
+
 ## Layout
 
 `index.html` is the entire site — HTML, CSS and JS inline, ~64 KB. `daanaa.php` is a
