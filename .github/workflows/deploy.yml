@@ -79,8 +79,11 @@ jobs:
           set -euo pipefail
           node build.js
           test -s dist/index.html || { echo "::error::build produced no English page"; exit 1; }
-          if grep -rq '@@[a-z]' dist/ 2>/dev/null; then
-            echo "::error::an unreplaced placeholder reached the output"; exit 1
+          # Text files only: favicon.ico contains the byte sequence '@@a',
+          # and a binary false positive here would fail every deploy.
+          if grep -rqI --include='*.html' --include='*.xml' '@@[A-Za-z]' dist/; then
+            echo "::error::an unreplaced placeholder reached the output"
+            grep -rnI --include='*.html' -o '@@[A-Za-z.]*@@' dist/ | head; exit 1
           fi
           echo "Editions built:"; find dist -name index.html | sort | sed 's/^/  /'
 

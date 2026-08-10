@@ -129,7 +129,13 @@ function render(loc) {
 }
 
 // ---- go ---------------------------------------------------------------
-fs.rmSync(DIST, { recursive: true, force: true });
+try {
+  fs.rmSync(DIST, { recursive: true, force: true });
+} catch (e) {
+  // Some environments (notably the Cowork device bridge) refuse unlink.
+  // Files are overwritten anyway; only a removed locale could go stale.
+  console.warn(`  ! could not clear dist/ (${e.code}); files will be overwritten in place`);
+}
 fs.mkdirSync(DIST, { recursive: true });
 
 const built = [];
