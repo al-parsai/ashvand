@@ -82,14 +82,39 @@ sync is paused during editing sessions.
 
 ## Layout
 
-`index.html` is the entire site — HTML, CSS and JS inline, ~64 KB. `daanaa.php` is a
-server-side proxy to the Anthropic API (`claude-sonnet-4-6`, `max_tokens: 1000`),
-rate-limited to 20 requests/hour/IP.
+**`template.html` + `i18n/*.json` are the source of truth. `index.html` no longer
+exists in the repo** — it is generated. Editing a built page in `dist/` does
+nothing; the next build overwrites it.
+
+- `template.html` — the whole site: HTML, CSS and JS inline. Translatable text is
+  replaced by `@@key@@` placeholders and marked `data-i18n="key"`.
+- `i18n/en.json` — English. `meta` (locale, dir, speech language), `html` (136
+  units), `attr` (11), `ask` (4 starter questions), and `data` (7 pillars with 35
+  echoes, 5 lamp names, 5 night messages, 19 UI strings).
+- `build.js` — emits `dist/index.html` for English and `dist/<lang>/index.html`
+  for the rest, plus `sitemap.xml`. Run `node build.js`. It fails rather than
+  shipping a page with a visible `@@key@@`, and refuses a locale whose key set
+  does not match `en.json` exactly.
+- `tools/` — the one-shot extractors that produced the template. Kept for audit,
+  not for routine use.
+
+To change English wording, edit `i18n/en.json`. To change structure or styling,
+edit `template.html`. Adding a language means adding `i18n/<code>.json` and the
+code to `LOCALES` in `build.js`.
+
+`daanaa.php` is a server-side proxy to the Anthropic API (`claude-sonnet-4-6`,
+`max_tokens: 1000`), rate-limited to 20 requests/hour/IP.
+
+The baseline for regression-diffing a build is `git show cb86084:index.html` —
+the last hand-maintained version. The extraction was proved lossless against it:
+putting the English strings back into the template reproduced that file byte for
+byte.
 
 ## Deploying
 
 **`git push`.** That is the whole procedure. Pushing to `main` triggers
-`.github/workflows/deploy.yml`, which rsyncs to SiteGround and then verifies that
+`.github/workflows/deploy.yml`, which runs `node build.js` and rsyncs `dist/`
+to SiteGround and then verifies that
 `config.php` returns 403, the homepage returns 200, and `daanaa.php` executes rather
 than serving its source. A red run means nothing shipped silently.
 
@@ -103,9 +128,17 @@ See `DEPLOY-SETUP.md` for the full configuration.
 
 ## Current work
 
-Internationalization into twelve equal language editions: English, Spanish, Hindi,
-Russian, Mandarin (Simplified), Tagalog, Punjabi (Gurmukhi), Persian, French, German,
-Italian, Portuguese.
+Internationalization into eleven equal language editions: English, Spanish, French,
+German, Portuguese, Russian, Arabic, Persian, Hindi, Punjabi (Gurmukhi), Tagalog.
+(Al set this list on 2026-08-10; it drops the earlier Mandarin and Italian and adds
+Arabic.)
+
+**Done:** all Persian removed from the English edition; the five lamp glyphs
+unified to romanised forms; the machinery — template, `en.json`, `build.js`,
+language switcher, `hreflang` + `x-default`, `dir="rtl"` at the `<html>` level,
+RTL webfont loaded only by the Arabic and Persian editions, sitemap.
+
+**Next:** the ten remaining `i18n/<code>.json` files.
 
 - Refactor `index.html` into `template.html` with `data-i18n` keys; one JSON file per
   language in `i18n/`; a Node build script emits **static** per-language pages
@@ -119,7 +152,12 @@ Italian, Portuguese.
 - Regression test for the refactor: the generated English page must diff clean
   against the baseline `index.html` from commit `bd24e8a`.
 
-**The thirty-five scripture echoes must not be machine-translated.** Each is a
+**The thirty-five scripture echoes must not be machine-translated.** Al confirmed
+the policy on 2026-08-10: where the target language *is* the scripture's own
+language, use the original — the actual Qur'anic Arabic and hadith wording for
+`ar`, Gurmukhi Gurbani for `pa`, the Sanskrit/Hindi source for `hi`. Elsewhere use
+published canonical translations. Anything that cannot be sourced confidently
+ships flagged for review rather than guessed. Each is a
 citation from a real tradition with canonical, instantly recognizable renderings. A
 back-translated Guru Nanak or Qur'anic line reads as careless to exactly the audience
 this site must respect. UI chrome and original Ashvand prose translate normally;

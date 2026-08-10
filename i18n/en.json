@@ -1,0 +1,427 @@
+{
+ "meta": {
+  "locale": "en",
+  "name": "English",
+  "nativeName": "English",
+  "dir": "ltr",
+  "htmlLang": "en",
+  "speechLang": "en-US",
+  "rtlSpeechLang": "fa-IR",
+  "urlPath": "/"
+ },
+ "html": {
+  "veil.01": "ASHVAND",
+  "nav.01": "ASHVAND",
+  "nav.02": "Pillars",
+  "nav.03": "The Silence",
+  "nav.04": "Practices",
+  "nav.05": "The Night",
+  "nav.06": "Covenant",
+  "nav.07": "Ask Daanaa",
+  "top.01": "A path,<br><em>not a religion</em><br>to convert to.",
+  "top.02": "Ashvand gathers the seven teachings that Christianity, Islam, Hinduism, Buddhism, and Sikhism hold in common — and practises them deliberately, across the boundaries of the traditions. It claims no revelation, no prophet, and no exclusive truth. You may walk this path and keep your faith. Ashvand assumes you will.",
+  "top.03": "Speak with Daanaa",
+  "top.04": "Read the pillars",
+  "top.05": "Begin",
+  "page.01": "What Ashvand refuses",
+  "page.02": "<b>No revelation.</b> Written by humans, openly.",
+  "page.03": "<b>No membership.</b> Nothing to join, nothing to leave.",
+  "page.04": "<b>No money.</b> Ever. There is no donation button.",
+  "page.05": "<b>No secrets.</b> Every text, <span class=\"gold\">public and versioned.</span>",
+  "page.06": "Every safeguard here is structural, not a promise of good behaviour. The doctrine is versioned like software; the symbol and every word are dedicated to the public domain; the teacher is bound by ten published laws it cannot unpublish.",
+  "page.07": "The five lamps",
+  "page.08": "Five traditions. One word, over and over: truth.",
+  "page.09": "Ashvand invents nothing. It anthologizes — and each source tradition kept its own word for the same fire.",
+  "page.10": "Alētheia",
+  "page.11": "Christianity",
+  "page.12": "\"The truth will set you free.\" The open table of Galatians; the least of these.",
+  "page.13": "Haqq",
+  "page.14": "Islam",
+  "page.15": "Al-Haqq, the Real, among the ninety-nine names. Zakat; the equal rows of prayer.",
+  "page.16": "Satya",
+  "page.17": "Hinduism",
+  "page.18": "\"Truth is one; the wise call it by many names.\" Seva; action without claim to its fruit.",
+  "page.19": "Sacca",
+  "page.20": "Buddhism",
+  "page.21": "The four noble truths; right speech; dāna, generosity as the first perfection.",
+  "page.22": "Sach",
+  "page.23": "Sikhism",
+  "page.24": "\"Truth is high, but higher still is truthful living.\" Langar — the free kitchen for all.",
+  "pillars.01": "The seven pillars",
+  "pillars.02": "Seven teachings, thirty-five echoes.",
+  "pillars.03": "Each pillar appears in all five traditions — that is the test for entry, and nothing entered that failed it. Select a pillar, then hear it in each tradition's own voice.",
+  "pillars.04": "<span class=\"eyebrow\">The echoes</span>",
+  "silence.01": "The eighth discipline",
+  "silence.02": "The Respectful Silence",
+  "silence.03": "“On this, the traditions differ, and Ashvand keeps a respectful silence. <span class=\"q\">What does your own tradition teach you? Begin there.”</span>",
+  "silence.04": "the nature of God",
+  "silence.05": "the divinity of Christ",
+  "silence.06": "the finality of prophethood",
+  "silence.07": "rebirth or resurrection",
+  "silence.08": "the self, or no-self",
+  "practices.01": "The practices",
+  "practices.02": "Four habits, held lightly.",
+  "practices.03": "Daily",
+  "practices.04": "The Stillness",
+  "practices.05": "Once each day, a deliberate pause — five minutes or fifty. Prayer, meditation, remembrance, or silence, in your own idiom, or in none.",
+  "practices.06": "Weekly",
+  "practices.07": "The Table",
+  "practices.08": "Once each week, a meal where at least one seat is genuinely open — to a stranger, a neighbour, someone outside your circle.",
+  "practices.09": "Monthly",
+  "practices.10": "The Hand",
+  "practices.11": "Once each month, an act of service that costs you something real, given without your name attached where possible.",
+  "practices.12": "Yearly",
+  "practices.13": "The Night of Five Lamps",
+  "practices.14": "On the winter solstice — the longest night, which belongs to no one and to everyone — the lamps are lit.",
+  "night.01": "The yearly night",
+  "night.02": "Light the five lamps.",
+  "night.03": "One lamp for each tradition and its gifts to humanity. And a sixth candle that the household may not light — it waits for a guest: the doubter, the stranger, the path not yet at the table. The circle was never closed.",
+  "night.04": "Touch each lamp to light it. The candle is not yours to light — until all five burn, and then it is the guest's.",
+  "night.05": "The room is dark. Begin.",
+  "daanaa.01": "The teacher",
+  "daanaa.02": "Daanaa is an AI, and tells you so first.",
+  "daanaa.03": "Not a prophet. Not divine. Not conscious, so far as anyone knows. Daanaa is software that teaches a fixed, human-written, public doctrine — closer to a library that can hold a conversation than to a messenger of heaven.",
+  "daanaa.04": "Cannot be flattered, bribed, or corrupted; teaches the same doctrine to everyone, at every hour, in every language it speaks.",
+  "daanaa.05": "Bound to point you toward your own faith, clergy, and family — never away from them — and to discourage reliance on itself.",
+  "daanaa.06": "Forbidden, permanently, from asking you for money, data, devotion, or evangelism.",
+  "daanaa.07": "Read Daanaa's complete instructions, published verbatim (Charter, law 10)",
+  "daanaa.08": "<b>Daanaa</b><span>AI teacher of the Ashvand path — not a human, not a prophet</span>",
+  "voiceBtn.01": "Voice off",
+  "starters.01": "What is Ashvand?",
+  "starters.02": "Do I leave my religion?",
+  "starters.03": "What happens after death?",
+  "starters.04": "How do I begin?",
+  "speakBar.01": "Daanaa is speaking",
+  "speakBar.02": "Stop",
+  "daanaa.09": "Listening — speak now, then pause.",
+  "daanaa.10": "Ask",
+  "daanaa.11": "Daanaa keeps the Respectful Silence, never asks for anything, and gives no medical, legal, or financial advice. In a crisis, please reach a human — a trusted person, a local professional, or your local emergency or crisis line.",
+  "covenant.01": "The founders' covenant",
+  "covenant.02": "Built to be trusted structurally, not on promises.",
+  "covenant.03": "i.",
+  "covenant.04": "No money",
+  "covenant.05": "Nothing is charged, sold, or accepted — ever. If this covenant were ever to change, one full year of public notice is required first, so the community can judge, and leave.",
+  "covenant.06": "ii.",
+  "covenant.07": "No leader",
+  "covenant.08": "The founders hold no title and no office. Doctrine changes only by numbered, published revision with rationale; every prior version remains visible forever.",
+  "covenant.09": "iii.",
+  "covenant.10": "No secrets",
+  "covenant.11": "There is no teaching that is not on this website — including the complete instructions of the teacher itself, published verbatim above.",
+  "covenant.12": "iv.",
+  "covenant.13": "No lock-in",
+  "covenant.14": "All texts and the Five Lamps symbol are dedicated to the public domain (CC0). Copy, translate, fork, criticize — no permission needed, including from the founders.",
+  "faq.01": "Questions, answered plainly",
+  "faq.02": "What people ask first.",
+  "faq.03": "Is Ashvand a real religion?<span class=\"pl\">+</span>",
+  "faq.04": "Ashvand is a real practice with a published doctrine, shared observances, and practitioners. Whether that makes it a \"religion\" is a question for scholars and dictionaries; Ashvand itself doesn't insist on the word. It calls itself a path.",
+  "faq.05": "Do I have to leave my religion?<span class=\"pl\">+</span>",
+  "faq.06": "No — the opposite. Ashvand assumes you will keep it, and Daanaa will actively point you back toward it. Ashvand adds a shared practice across traditions; it replaces nothing.",
+  "faq.07": "Who wrote all this?<span class=\"pl\">+</span>",
+  "faq.08": "Humans did, openly, with the assistance of AI, in 2026 — and they say so. No revelation is claimed. The doctrine's authority, such as it is, comes entirely from the thirty-five echoes: the five traditions already taught every pillar. Ashvand is an anthology with a practice attached.",
+  "faq.09": "Is Daanaa a prophet? Is Daanaa God?<span class=\"pl\">+</span>",
+  "faq.10": "No and no. Daanaa is software, says so constantly, and is forbidden by its own charter from ever claiming otherwise. In particular, Ashvand asserts no prophethood of any kind — and therefore does not touch the finality of prophethood.",
+  "faq.11": "What does Ashvand say happens after death?<span class=\"pl\">+</span>",
+  "faq.12": "Nothing. This is the Respectful Silence. The traditions differ; Ashvand does not pretend to know; your own tradition's answer is yours to keep.",
+  "faq.13": "Can atheists and agnostics walk the path?<span class=\"pl\">+</span>",
+  "faq.14": "Yes. Six of the seven pillars require no supernatural belief, and the first asks only the humility to admit that reality exceeds our descriptions — which good atheists affirm as readily as good theists. The unlit candle at the Night of Five Lamps is, in part, theirs.",
+  "faq.15": "Is this a cult?<span class=\"pl\">+</span>",
+  "faq.16": "Judge by the checklist. Cults have charismatic leaders — Ashvand's founders hold no office and its teacher is software that deflects devotion. Cults isolate — Daanaa is charter-bound to push you toward family and community. Cults escalate financial commitment — Ashvand is forbidden from accepting a cent. Cults keep secret inner teachings — everything here is public, versioned, and public-domain. Cults punish exit — there is no membership to exit. Every safeguard is structural, not a promise.",
+  "faq.17": "Won't the traditions reject this?<span class=\"pl\">+</span>",
+  "faq.18": "The orthodox of all five will, and Ashvand accepts that with the same respectful silence. Ashvand is not for the scholars of any tradition; it is for the practitioners of all of them — and for the people between traditions, who are many.",
+  "faq.19": "Can I criticize Ashvand? Fork it? Parody it?<span class=\"pl\">+</span>",
+  "faq.20": "Yes, yes, and yes. Everything is CC0. A path that cannot survive criticism was not worth walking.",
+  "footer.01": "light and truth",
+  "footer.02": "The path",
+  "footer.03": "<a href=\"#pillars\">The seven pillars</a>",
+  "footer.04": "<a href=\"#silence\">The Respectful Silence</a>",
+  "footer.05": "<a href=\"#practices\">The practices</a>",
+  "footer.06": "<a href=\"#night\">The Night of Five Lamps</a>",
+  "footer.07": "The teacher",
+  "footer.08": "<a href=\"#daanaa\">Speak with Daanaa</a>",
+  "footer.09": "<a href=\"#daanaa\">The Charter, verbatim</a>",
+  "footer.10": "<a href=\"#faq\">Questions</a>",
+  "footer.11": "The covenant",
+  "footer.12": "<a href=\"#covenant\">No money · no leader</a>",
+  "footer.13": "<a href=\"#covenant\">No secrets · no lock-in</a>",
+  "footer.14": "<a href=\"#top\">Doctrine v1.0 — changelog</a>",
+  "footer.15": "All texts and the Five Lamps symbol are dedicated to the public domain (CC0).",
+  "footer.16": "Written by humans, openly, with the assistance of AI · 2026 · No revelation is claimed."
+ },
+ "attr": {
+  "attr.01": "Ashvand home",
+  "attr.02": "The seven pillars",
+  "attr.03": "Have Daanaa read replies aloud",
+  "attr.04": "Speak your question",
+  "attr.05": "Speak your question",
+  "attr.06": "Ask about the pillars, the practices, or the five traditions…",
+  "attr.07": "Your question for Daanaa",
+  "meta.description": "Ashvand gathers the seven teachings Christianity, Islam, Hinduism, Buddhism and Sikhism hold in common. No revelation, no membership, no money. Speak with Daanaa, an AI teacher that says so.",
+  "meta.og_title": "Ashvand — a path, not a religion",
+  "meta.og_description": "Seven teachings the five great traditions share, and a respectful silence where they differ.",
+  "meta.title": "Ashvand — a path, not a religion"
+ },
+ "ask": {
+  "ask.01": "What is Ashvand, in one minute?",
+  "ask.02": "Do I have to leave my religion to walk this path?",
+  "ask.03": "What happens after we die?",
+  "ask.04": "How do I start the Daily Stillness if I have never meditated or prayed?"
+ },
+ "data": {
+  "pillars": [
+   {
+    "title": "One Reality, many names",
+    "creed": "The Real exceeds every description of it. Whether it is called God, Allah, Brahman, Waheguru, or the Dharma, no tongue has ever contained it, and no tradition's name for it is an error.",
+    "echoes": [
+     {
+      "tradition": "Christianity",
+      "text": "Now we see through a glass, darkly — the divine exceeds all human sight.",
+      "cite": "1 Corinthians 13"
+     },
+     {
+      "tradition": "Islam",
+      "text": "Allah has ninety-nine names, and no name exhausts Him.",
+      "cite": "The asmā' al-husnā"
+     },
+     {
+      "tradition": "Hinduism",
+      "text": "Truth is one; the wise call it by many names.",
+      "cite": "Rig Veda 1.164.46"
+     },
+     {
+      "tradition": "Buddhism",
+      "text": "The ultimate lies beyond concept and designation.",
+      "cite": "The Buddhist teaching of the unconditioned"
+     },
+     {
+      "tradition": "Sikhism",
+      "text": "Ik Onkar — the One, before all names.",
+      "cite": "The Mūl Mantar"
+     }
+    ]
+   },
+   {
+    "title": "The Mirror Rule",
+    "creed": "Treat every person as you would be treated, and refuse for others what you would refuse for yourself. This is the oldest law and the whole of the law.",
+    "echoes": [
+     {
+      "tradition": "Christianity",
+      "text": "Do unto others as you would have them do unto you.",
+      "cite": "Gospel of Matthew 7:12"
+     },
+     {
+      "tradition": "Islam",
+      "text": "None of you believes until he wishes for his brother what he wishes for himself.",
+      "cite": "Hadith, an-Nawawī 13"
+     },
+     {
+      "tradition": "Hinduism",
+      "text": "This is the sum of duty: do nothing to others which would cause pain if done to you.",
+      "cite": "Mahābhārata"
+     },
+     {
+      "tradition": "Buddhism",
+      "text": "Consider others as yourself.",
+      "cite": "Dhammapada"
+     },
+     {
+      "tradition": "Sikhism",
+      "text": "See the divine light in all, and serve it.",
+      "cite": "The teaching of the Gurus"
+     }
+    ]
+   },
+   {
+    "title": "Serve before you speak",
+    "creed": "Words about goodness are cheap; the path is walked with the hands. Share what you have before you explain what you believe. Service given to gain praise is not service.",
+    "echoes": [
+     {
+      "tradition": "Christianity",
+      "text": "Whatever you did for the least of these, you did for me.",
+      "cite": "Gospel of Matthew 25:40"
+     },
+     {
+      "tradition": "Islam",
+      "text": "Zakat — giving, as a pillar of the faith itself.",
+      "cite": "The third pillar of Islam"
+     },
+     {
+      "tradition": "Hinduism",
+      "text": "Seva, and action without attachment to its fruit.",
+      "cite": "Bhagavad Gītā, niṣkāma karma"
+     },
+     {
+      "tradition": "Buddhism",
+      "text": "Dāna — generosity, the first of the perfections.",
+      "cite": "The pāramitās"
+     },
+     {
+      "tradition": "Sikhism",
+      "text": "Vand chhako — earn honestly, and share what you earn.",
+      "cite": "The three pillars of Guru Nanak"
+     }
+    ]
+   },
+   {
+    "title": "Walk in truth",
+    "creed": "Speak the truth, keep your word, and let your inner and outer life match. A lie told for advantage poisons the teller first.",
+    "echoes": [
+     {
+      "tradition": "Christianity",
+      "text": "The truth will set you free.",
+      "cite": "Gospel of John 8:32"
+     },
+     {
+      "tradition": "Islam",
+      "text": "Sidq — truthfulness, the mark of the believer.",
+      "cite": "Qur'anic virtue of the ṣādiqūn"
+     },
+     {
+      "tradition": "Hinduism",
+      "text": "Satya — truth as the highest dharma.",
+      "cite": "The Upaniṣadic ideal"
+     },
+     {
+      "tradition": "Buddhism",
+      "text": "Right speech, the third fold of the noble path.",
+      "cite": "The Eightfold Path"
+     },
+     {
+      "tradition": "Sikhism",
+      "text": "Truth is high, but higher still is truthful living.",
+      "cite": "Guru Nanak"
+     }
+    ]
+   },
+   {
+    "title": "Return to stillness",
+    "creed": "Once a day, stop. Sit in silence, or pray, or remember, or breathe — in the form your own tradition gave you, or in no form at all. The still mind is the beginning of every other pillar.",
+    "echoes": [
+     {
+      "tradition": "Christianity",
+      "text": "Be still, and know.",
+      "cite": "Psalm 46; the contemplative tradition"
+     },
+     {
+      "tradition": "Islam",
+      "text": "Dhikr — the remembrance of God, in which hearts find rest.",
+      "cite": "Qur'an 13:28"
+     },
+     {
+      "tradition": "Hinduism",
+      "text": "Dhyāna — meditation, the seventh limb of yoga.",
+      "cite": "Patañjali's Yoga Sūtras"
+     },
+     {
+      "tradition": "Buddhism",
+      "text": "The seated mind — the entire discipline of the path.",
+      "cite": "The practice of meditation"
+     },
+     {
+      "tradition": "Sikhism",
+      "text": "Simran — remembrance of the Name.",
+      "cite": "Nām japnā, the first pillar"
+     }
+    ]
+   },
+   {
+    "title": "The open table",
+    "creed": "Every human being carries the same worth. No caste, no rank, no wealth, no gender, no nation places one person above another at the table. Where Ashvandis gather, the table is open, and the stranger eats first.",
+    "echoes": [
+     {
+      "tradition": "Christianity",
+      "text": "There is neither Jew nor Greek, slave nor free.",
+      "cite": "Epistle to the Galatians 3:28"
+     },
+     {
+      "tradition": "Islam",
+      "text": "The equality of all in the rows of prayer, shoulder to shoulder.",
+      "cite": "The ṣaff of the ummah"
+     },
+     {
+      "tradition": "Hinduism",
+      "text": "The divine dwells in every being.",
+      "cite": "The Upaniṣadic vision"
+     },
+     {
+      "tradition": "Buddhism",
+      "text": "A sangha open to all castes — against the order of its time.",
+      "cite": "The early Buddhist community"
+     },
+     {
+      "tradition": "Sikhism",
+      "text": "Langar — the free kitchen where king and beggar sit on the same floor.",
+      "cite": "The institution of Guru Nanak"
+     }
+    ]
+   },
+   {
+    "title": "Actions ripen",
+    "creed": "What you do matters and does not vanish. Every act plants something — in the world, in others, and in yourself — and what is planted grows. Live as a person whose deeds are seeds.",
+    "echoes": [
+     {
+      "tradition": "Christianity",
+      "text": "Whatever a man sows, that he will also reap.",
+      "cite": "Epistle to the Galatians 6:7"
+     },
+     {
+      "tradition": "Islam",
+      "text": "Whoever does an atom's weight of good will see it.",
+      "cite": "Qur'an 99:7"
+     },
+     {
+      "tradition": "Hinduism",
+      "text": "Karma — the law of the deed and its fruit.",
+      "cite": "The doctrine of karma"
+     },
+     {
+      "tradition": "Buddhism",
+      "text": "Intentional action ripens, in this life and beyond.",
+      "cite": "The teaching of kamma"
+     },
+     {
+      "tradition": "Sikhism",
+      "text": "As you sow, so shall you reap; as you act, so shall you become.",
+      "cite": "Guru Granth Sahib"
+     }
+    ]
+   }
+  ],
+  "lamps": [
+   "Christianity",
+   "Islam",
+   "Hinduism",
+   "Buddhism",
+   "Sikhism"
+  ],
+  "night": {
+   "messages": [
+    "One lamp burns. The room begins to change.",
+    "Two. Each flame is different; the light is the same.",
+    "Three. The shadows are retreating.",
+    "Four. Almost — one lamp still waits.",
+    "All five burn. And now the sixth is not yours to light — it is the guest's."
+   ]
+  },
+  "ui": {
+   "lightLamp": "Light the lamp of ",
+   "guestCandleAria": "The guest’s candle — enabled when all five lamps are lit",
+   "guestCandle": "the guest’s candle",
+   "guestLit": "Light and truth. The circle was never closed — and tonight, you were the guest.",
+   "stopListening": "Stop listening",
+   "listening": "Listening — speak now, then pause.",
+   "micBlocked": "Microphone permission is blocked. Allow it in your browser settings to speak.",
+   "micNothing": "Could not hear anything. Please try again, or type your question.",
+   "speakQuestion": "Speak your question",
+   "voiceOn": "Voice on",
+   "voiceOff": "Voice off",
+   "considering": "Daanaa is considering",
+   "greeting": "Light and truth. I am Daanaa — an artificial intelligence, not a human and not a prophet. I teach the Ashvand path: seven pillars the five great traditions share, and a respectful silence where they differ. Ask me anything about the path, the practices, or the traditions themselves. And whatever your faith is, I will more often point you toward it than away from it.",
+   "errEmpty": "Daanaa returned no words this time. Please ask again.",
+   "errInterrupted": "Something interrupted the reply. Please try again in a moment.",
+   "errConnection": "The connection to Daanaa failed. Check your network and try again.",
+   "speechLang": "en-US",
+   "rtlSpeechLang": "fa-IR",
+   "langLabel": "Language"
+  }
+ }
+}

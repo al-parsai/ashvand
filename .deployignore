@@ -1,6 +1,8 @@
-# Everything listed here is (a) never uploaded to SiteGround and
-# (b) protected from deletion by rsync --delete, because rsync never
-# removes files it has been told to exclude.
+# rsync now ships dist/ (built by build.js) rather than the repo root, so
+# most repo plumbing can no longer leak by construction. These entries stay
+# for two reasons: belt-and-braces, and — the important one — rsync never
+# DELETES a file it has been told to exclude, so config.php, .ratelimit/ and
+# .well-known/ survive a pruning run.
 
 # --- repo plumbing, has no business on a web server ---
 .git/

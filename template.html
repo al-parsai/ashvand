@@ -8,12 +8,13 @@
 <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#0C1A1E">
-<meta name="description" content="Ashvand gathers the seven teachings Christianity, Islam, Hinduism, Buddhism and Sikhism hold in common. No revelation, no membership, no money. Speak with Daanaa, an AI teacher that says so.">
-<meta property="og:title" content="Ashvand — a path, not a religion">
-<meta property="og:description" content="Seven teachings the five great traditions share, and a respectful silence where they differ.">
+<meta name="description" content="@@meta.description@@">
+<meta property="og:title" content="@@meta.og_title@@">
+<meta property="og:description" content="@@meta.og_description@@">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ashvand.org/">
-<title>Ashvand — a path, not a religion</title>
+<!--HREFLANG-->
+<title>@@meta.title@@</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -59,6 +60,18 @@ nav.solid{background:rgba(247,243,234,.86);backdrop-filter:blur(14px);box-shadow
 .links{display:flex;gap:34px;align-items:center;font-family:var(--sans);font-size:13.5px;font-weight:500}
 .links a{color:var(--ink-soft);transition:color .25s}
 .links a:hover{color:var(--teal-deep)}
+.lang{position:relative;margin-left:2px}
+.lang>summary{list-style:none;cursor:pointer;font-family:var(--sans);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);padding:7px 12px;border:1px solid var(--hair);border-radius:999px;display:flex;align-items:center;gap:8px;white-space:nowrap;transition:color .25s,border-color .25s}
+.lang>summary::-webkit-details-marker{display:none}
+.lang>summary:hover{color:var(--teal-deep);border-color:var(--teal-deep)}
+.lang>summary .chev{width:7px;height:7px;border-right:1.2px solid currentColor;border-bottom:1.2px solid currentColor;transform:rotate(45deg) translateY(-2px);transition:transform .25s}
+.lang[open]>summary .chev{transform:rotate(-135deg) translateY(1px)}
+.lang-menu{position:absolute;top:calc(100% + 12px);inset-inline-end:0;background:var(--parchment-2);border:1px solid var(--hair);border-radius:14px;padding:8px;min-width:196px;display:grid;gap:1px;box-shadow:0 20px 48px rgba(12,26,30,.15);z-index:60;max-height:min(70vh,520px);overflow:auto}
+.lang-menu a{font-family:var(--sans);font-size:14px;font-weight:400;letter-spacing:0;text-transform:none;padding:9px 12px;border-radius:9px;color:var(--ink-soft);display:block;white-space:nowrap}
+.lang-menu a:hover{background:var(--teal-mist);color:var(--teal-deep)}
+.lang-menu a[aria-current="true"]{color:var(--teal-deep);font-weight:500}
+html[dir=rtl] body{font-family:var(--fa)}
+html[dir=rtl] .lede,html[dir=rtl] .echo-quote p{text-align:right}
 .cta{background:var(--ink);color:var(--parchment) !important;padding:10px 20px;border-radius:99px;transition:background .25s}
 .cta:hover{background:var(--teal-deep)}
 @media (max-width:820px){.links a:not(.cta){display:none}}
@@ -303,33 +316,34 @@ footer li a:hover{color:var(--gold)}
       <animate attributeName="opacity" values="1;.4;1" dur="1.6s" repeatCount="indefinite"/>
     </path>
   </svg>
-  <div class="word">ASHVAND</div>
+  <div class="word" data-i18n="veil.01">@@veil.01@@</div>
 </div>
 
 <nav id="nav">
   <div class="wrap nav-in">
-    <a class="brand" href="#top" aria-label="Ashvand home">
+    <a class="brand" href="#top" aria-label="@@attr.01@@">
       <svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="88" fill="none" stroke="#D9A021" stroke-width="7"/><path fill="#1F7A8C" d="M100 48 C124 72 127 100 118 118 C112 130 103 135 100 148 C97 135 88 130 82 118 C73 100 76 72 100 48 Z"/></svg>
-      <span class="bw">ASHVAND</span>
+      <span class="bw" data-i18n="nav.01">@@nav.01@@</span>
     </a>
     <div class="links">
-      <a href="#pillars">Pillars</a>
-      <a href="#silence">The Silence</a>
-      <a href="#practices">Practices</a>
-      <a href="#night">The Night</a>
-      <a href="#covenant">Covenant</a>
-      <a class="cta" href="#daanaa">Ask Daanaa</a>
+      <a href="#pillars" data-i18n="nav.02">@@nav.02@@</a>
+      <a href="#silence" data-i18n="nav.03">@@nav.03@@</a>
+      <a href="#practices" data-i18n="nav.04">@@nav.04@@</a>
+      <a href="#night" data-i18n="nav.05">@@nav.05@@</a>
+      <a href="#covenant" data-i18n="nav.06">@@nav.06@@</a>
+      <a class="cta" href="#daanaa" data-i18n="nav.07">@@nav.07@@</a>
+      <!--LANGSWITCH-->
     </div>
   </div>
 </nav>
 
 <header class="hero wrap" id="top">
   <div>
-    <h1 class="rv">A path,<br><em>not a religion</em><br>to convert to.</h1>
-    <p class="lede rv rv-d1">Ashvand gathers the seven teachings that Christianity, Islam, Hinduism, Buddhism, and Sikhism hold in common — and practises them deliberately, across the boundaries of the traditions. It claims no revelation, no prophet, and no exclusive truth. You may walk this path and keep your faith. Ashvand assumes you will.</p>
+    <h1 class="rv" data-i18n="top.01">@@top.01@@</h1>
+    <p class="lede rv rv-d1" data-i18n="top.02">@@top.02@@</p>
     <div class="h-actions rv rv-d2">
-      <button class="btn-ink" onclick="document.getElementById('daanaa').scrollIntoView({behavior:'smooth'})">Speak with Daanaa</button>
-      <button class="btn-ghost" onclick="document.getElementById('pillars').scrollIntoView({behavior:'smooth'})">Read the pillars</button>
+      <button class="btn-ink" onclick="document.getElementById('daanaa').scrollIntoView({behavior:'smooth'})" data-i18n="top.03">@@top.03@@</button>
+      <button class="btn-ghost" onclick="document.getElementById('pillars').scrollIntoView({behavior:'smooth'})" data-i18n="top.04">@@top.04@@</button>
     </div>
   </div>
   <div class="hero-mark" aria-hidden="true">
@@ -343,19 +357,19 @@ footer li a:hover{color:var(--gold)}
       <g class="flame-b"><path fill="#D9A021" d="M100 82 C109 91 110 100 107 107 C105 112 101 114 100 119 C99 114 95 112 93 107 C90 100 91 91 100 82 Z"/><circle cx="100" cy="107" r="4" fill="#F2C14E"/></g>
     </svg>
   </div>
-  <div class="scroll-cue" aria-hidden="true"><span>Begin</span><span class="tick"></span></div>
+  <div class="scroll-cue" aria-hidden="true"><span data-i18n="top.05">@@top.05@@</span><span class="tick"></span></div>
 </header>
 
 <section class="manifesto">
   <div class="wrap">
-    <p class="eyebrow rv">What Ashvand refuses</p>
+    <p class="eyebrow rv" data-i18n="page.01">@@page.01@@</p>
     <div class="lines">
-      <p class="mline rv"><b>No revelation.</b> Written by humans, openly.</p>
-      <p class="mline rv rv-d1"><b>No membership.</b> Nothing to join, nothing to leave.</p>
-      <p class="mline rv rv-d2"><b>No money.</b> Ever. There is no donation button.</p>
-      <p class="mline rv rv-d3"><b>No secrets.</b> Every text, <span class="gold">public and versioned.</span></p>
+      <p class="mline rv" data-i18n="page.02">@@page.02@@</p>
+      <p class="mline rv rv-d1" data-i18n="page.03">@@page.03@@</p>
+      <p class="mline rv rv-d2" data-i18n="page.04">@@page.04@@</p>
+      <p class="mline rv rv-d3" data-i18n="page.05">@@page.05@@</p>
     </div>
-    <p class="note rv rv-d4">Every safeguard here is structural, not a promise of good behaviour. The doctrine is versioned like software; the symbol and every word are dedicated to the public domain; the teacher is bound by ten published laws it cannot unpublish.</p>
+    <p class="note rv rv-d4" data-i18n="page.06">@@page.06@@</p>
   </div>
 </section>
 
@@ -363,17 +377,17 @@ footer li a:hover{color:var(--gold)}
   <div class="wrap">
     <div class="src-head">
       <div>
-        <p class="eyebrow rv">The five lamps</p>
-        <h2 class="rv rv-d1">Five traditions. One word, over and over: truth.</h2>
+        <p class="eyebrow rv" data-i18n="page.07">@@page.07@@</p>
+        <h2 class="rv rv-d1" data-i18n="page.08">@@page.08@@</h2>
       </div>
-      <p class="rv rv-d2">Ashvand invents nothing. It anthologizes — and each source tradition kept its own word for the same fire.</p>
+      <p class="rv rv-d2" data-i18n="page.09">@@page.09@@</p>
     </div>
     <div class="src-grid">
-      <div class="src rv"><span class="lamp-dot"></span><div class="glyph">Alētheia</div><h3>Christianity</h3><p>"The truth will set you free." The open table of Galatians; the least of these.</p></div>
-      <div class="src rv rv-d1"><span class="lamp-dot"></span><div class="glyph">Haqq</div><h3>Islam</h3><p>Al-Haqq, the Real, among the ninety-nine names. Zakat; the equal rows of prayer.</p></div>
-      <div class="src rv rv-d2"><span class="lamp-dot"></span><div class="glyph">Satya</div><h3>Hinduism</h3><p>"Truth is one; the wise call it by many names." Seva; action without claim to its fruit.</p></div>
-      <div class="src rv rv-d3"><span class="lamp-dot"></span><div class="glyph">Sacca</div><h3>Buddhism</h3><p>The four noble truths; right speech; dāna, generosity as the first perfection.</p></div>
-      <div class="src rv rv-d4"><span class="lamp-dot"></span><div class="glyph">Sach</div><h3>Sikhism</h3><p>"Truth is high, but higher still is truthful living." Langar — the free kitchen for all.</p></div>
+      <div class="src rv"><span class="lamp-dot"></span><div class="glyph" data-i18n="page.10">@@page.10@@</div><h3 data-i18n="page.11">@@page.11@@</h3><p data-i18n="page.12">@@page.12@@</p></div>
+      <div class="src rv rv-d1"><span class="lamp-dot"></span><div class="glyph" data-i18n="page.13">@@page.13@@</div><h3 data-i18n="page.14">@@page.14@@</h3><p data-i18n="page.15">@@page.15@@</p></div>
+      <div class="src rv rv-d2"><span class="lamp-dot"></span><div class="glyph" data-i18n="page.16">@@page.16@@</div><h3 data-i18n="page.17">@@page.17@@</h3><p data-i18n="page.18">@@page.18@@</p></div>
+      <div class="src rv rv-d3"><span class="lamp-dot"></span><div class="glyph" data-i18n="page.19">@@page.19@@</div><h3 data-i18n="page.20">@@page.20@@</h3><p data-i18n="page.21">@@page.21@@</p></div>
+      <div class="src rv rv-d4"><span class="lamp-dot"></span><div class="glyph" data-i18n="page.22">@@page.22@@</div><h3 data-i18n="page.23">@@page.23@@</h3><p data-i18n="page.24">@@page.24@@</p></div>
     </div>
   </div>
 </section>
@@ -381,16 +395,16 @@ footer li a:hover{color:var(--gold)}
 <section class="pillars" id="pillars">
   <div class="wrap">
     <div class="pl-head">
-      <p class="eyebrow rv">The seven pillars</p>
-      <h2 class="rv rv-d1">Seven teachings, thirty-five echoes.</h2>
-      <p class="rv rv-d2">Each pillar appears in all five traditions — that is the test for entry, and nothing entered that failed it. Select a pillar, then hear it in each tradition's own voice.</p>
+      <p class="eyebrow rv" data-i18n="pillars.01">@@pillars.01@@</p>
+      <h2 class="rv rv-d1" data-i18n="pillars.02">@@pillars.02@@</h2>
+      <p class="rv rv-d2" data-i18n="pillars.03">@@pillars.03@@</p>
     </div>
     <div class="pl-body rv rv-d2">
       <div class="pl-index" role="tablist" aria-label="The seven pillars" id="plIndex"></div>
       <div class="pl-pane">
         <h3 id="plTitle"></h3>
         <p class="creed" id="plCreed"></p>
-        <div class="echo-label"><span class="eyebrow">The echoes</span></div>
+        <div class="echo-label" data-i18n="pillars.04">@@pillars.04@@</div>
         <div class="echo-tabs" id="echoTabs"></div>
         <div class="echo-quote"><p id="echoText"></p><cite id="echoCite"></cite></div>
       </div>
@@ -400,24 +414,24 @@ footer li a:hover{color:var(--gold)}
 
 <section class="silence" id="silence">
   <div class="wrap">
-    <p class="eyebrow rv">The eighth discipline</p>
-    <h2 class="rv rv-d1">The Respectful Silence</h2>
-    <p class="fixed rv rv-d2">“On this, the traditions differ, and Ashvand keeps a respectful silence. <span class="q">What does your own tradition teach you? Begin there.”</span></p>
+    <p class="eyebrow rv" data-i18n="silence.01">@@silence.01@@</p>
+    <h2 class="rv rv-d1" data-i18n="silence.02">@@silence.02@@</h2>
+    <p class="fixed rv rv-d2" data-i18n="silence.03">@@silence.03@@</p>
     <div class="held rv rv-d3">
-      <span>the nature of God</span><span>the divinity of Christ</span><span>the finality of prophethood</span><span>rebirth or resurrection</span><span>the self, or no-self</span>
+      <span data-i18n="silence.04">@@silence.04@@</span><span data-i18n="silence.05">@@silence.05@@</span><span data-i18n="silence.06">@@silence.06@@</span><span data-i18n="silence.07">@@silence.07@@</span><span data-i18n="silence.08">@@silence.08@@</span>
     </div>
   </div>
 </section>
 
 <section class="practices" id="practices">
   <div class="wrap">
-    <p class="eyebrow rv">The practices</p>
-    <h2 class="rv rv-d1" style="font-size:clamp(30px,3.8vw,48px);font-weight:300;margin-top:16px">Four habits, held lightly.</h2>
+    <p class="eyebrow rv" data-i18n="practices.01">@@practices.01@@</p>
+    <h2 class="rv rv-d1" style="font-size:clamp(30px,3.8vw,48px);font-weight:300;margin-top:16px" data-i18n="practices.02">@@practices.02@@</h2>
     <div class="pr-grid">
-      <div class="pr rv"><p class="rhythm">Daily</p><h3>The Stillness</h3><p>Once each day, a deliberate pause — five minutes or fifty. Prayer, meditation, remembrance, or silence, in your own idiom, or in none.</p></div>
-      <div class="pr rv rv-d1"><p class="rhythm">Weekly</p><h3>The Table</h3><p>Once each week, a meal where at least one seat is genuinely open — to a stranger, a neighbour, someone outside your circle.</p></div>
-      <div class="pr rv rv-d2"><p class="rhythm">Monthly</p><h3>The Hand</h3><p>Once each month, an act of service that costs you something real, given without your name attached where possible.</p></div>
-      <div class="pr rv rv-d3"><p class="rhythm">Yearly</p><h3>The Night of Five Lamps</h3><p>On the winter solstice — the longest night, which belongs to no one and to everyone — the lamps are lit.</p></div>
+      <div class="pr rv"><p class="rhythm" data-i18n="practices.03">@@practices.03@@</p><h3 data-i18n="practices.04">@@practices.04@@</h3><p data-i18n="practices.05">@@practices.05@@</p></div>
+      <div class="pr rv rv-d1"><p class="rhythm" data-i18n="practices.06">@@practices.06@@</p><h3 data-i18n="practices.07">@@practices.07@@</h3><p data-i18n="practices.08">@@practices.08@@</p></div>
+      <div class="pr rv rv-d2"><p class="rhythm" data-i18n="practices.09">@@practices.09@@</p><h3 data-i18n="practices.10">@@practices.10@@</h3><p data-i18n="practices.11">@@practices.11@@</p></div>
+      <div class="pr rv rv-d3"><p class="rhythm" data-i18n="practices.12">@@practices.12@@</p><h3 data-i18n="practices.13">@@practices.13@@</h3><p data-i18n="practices.14">@@practices.14@@</p></div>
     </div>
   </div>
 </section>
@@ -425,14 +439,14 @@ footer li a:hover{color:var(--gold)}
 <section class="night" id="night">
   <div class="wrap split">
     <div>
-      <p class="eyebrow rv">The yearly night</p>
-      <h2 class="rv rv-d1">Light the five lamps.</h2>
-      <p class="rv rv-d2">One lamp for each tradition and its gifts to humanity. And a sixth candle that the household may not light — it waits for a guest: the doubter, the stranger, the path not yet at the table. The circle was never closed.</p>
-      <p class="hint rv rv-d3">Touch each lamp to light it. The candle is not yours to light — until all five burn, and then it is the guest's.</p>
+      <p class="eyebrow rv" data-i18n="night.01">@@night.01@@</p>
+      <h2 class="rv rv-d1" data-i18n="night.02">@@night.02@@</h2>
+      <p class="rv rv-d2" data-i18n="night.03">@@night.03@@</p>
+      <p class="hint rv rv-d3" data-i18n="night.04">@@night.04@@</p>
     </div>
     <div>
       <div class="lamps" id="lamps"></div>
-      <p class="night-msg" id="nightMsg">The room is dark. Begin.</p>
+      <p class="night-msg" id="nightMsg" data-i18n="night.05">@@night.05@@</p>
     </div>
   </div>
 </section>
@@ -440,16 +454,16 @@ footer li a:hover{color:var(--gold)}
 <section class="daanaa" id="daanaa">
   <div class="wrap da-split">
     <div class="da-copy">
-      <p class="eyebrow rv">The teacher</p>
-      <h2 class="rv rv-d1">Daanaa is an AI, and tells you so first.</h2>
-      <p class="rv rv-d2">Not a prophet. Not divine. Not conscious, so far as anyone knows. Daanaa is software that teaches a fixed, human-written, public doctrine — closer to a library that can hold a conversation than to a messenger of heaven.</p>
+      <p class="eyebrow rv" data-i18n="daanaa.01">@@daanaa.01@@</p>
+      <h2 class="rv rv-d1" data-i18n="daanaa.02">@@daanaa.02@@</h2>
+      <p class="rv rv-d2" data-i18n="daanaa.03">@@daanaa.03@@</p>
       <div class="truths rv rv-d3">
-        <div class="truth"><svg viewBox="0 0 24 24" fill="none" stroke="#1F7A8C" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg><span>Cannot be flattered, bribed, or corrupted; teaches the same doctrine to everyone, at every hour, in every language it speaks.</span></div>
-        <div class="truth"><svg viewBox="0 0 24 24" fill="none" stroke="#1F7A8C" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg><span>Bound to point you toward your own faith, clergy, and family — never away from them — and to discourage reliance on itself.</span></div>
-        <div class="truth"><svg viewBox="0 0 24 24" fill="none" stroke="#1F7A8C" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg><span>Forbidden, permanently, from asking you for money, data, devotion, or evangelism.</span></div>
+        <div class="truth"><svg viewBox="0 0 24 24" fill="none" stroke="#1F7A8C" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg><span data-i18n="daanaa.04">@@daanaa.04@@</span></div>
+        <div class="truth"><svg viewBox="0 0 24 24" fill="none" stroke="#1F7A8C" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg><span data-i18n="daanaa.05">@@daanaa.05@@</span></div>
+        <div class="truth"><svg viewBox="0 0 24 24" fill="none" stroke="#1F7A8C" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg><span data-i18n="daanaa.06">@@daanaa.06@@</span></div>
       </div>
       <details class="charter rv rv-d4">
-        <summary>Read Daanaa's complete instructions, published verbatim (Charter, law 10)</summary>
+        <summary data-i18n="daanaa.07">@@daanaa.07@@</summary>
         <pre id="charterText"></pre>
       </details>
     </div>
@@ -457,35 +471,35 @@ footer li a:hover{color:var(--gold)}
       <div class="chat rv rv-d1">
         <div class="chat-top">
           <svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="88" fill="none" stroke="#D9A021" stroke-width="7"/><path fill="#D9A021" d="M100 52 C122 74 125 100 117 117 C111 129 103 133 100 145 C97 133 89 129 83 117 C75 100 78 74 100 52 Z"/></svg>
-          <div class="who"><b>Daanaa</b><span>AI teacher of the Ashvand path — not a human, not a prophet</span></div>
+          <div class="who" data-i18n="daanaa.08">@@daanaa.08@@</div>
           <div class="voice-toggle">
             <button id="voiceBtn" onclick="toggleVoice()" aria-pressed="false" title="Have Daanaa read replies aloud">
               <svg viewBox="0 0 24 24"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
-              <span id="voiceLabel">Voice off</span>
+              <span id="voiceLabel" data-i18n="voiceBtn.01">@@voiceBtn.01@@</span>
             </button>
           </div>
         </div>
         <div id="log" aria-live="polite"></div>
         <div class="starters" id="starters">
-          <button class="starter" onclick="ask('What is Ashvand, in one minute?')">What is Ashvand?</button>
-          <button class="starter" onclick="ask('Do I have to leave my religion to walk this path?')">Do I leave my religion?</button>
-          <button class="starter" onclick="ask('What happens after we die?')">What happens after death?</button>
-          <button class="starter" onclick="ask('How do I start the Daily Stillness if I have never meditated or prayed?')">How do I begin?</button>
+          <button class="starter" onclick="ask('@@ask.01@@')" data-i18n="starters.01">@@starters.01@@</button>
+          <button class="starter" onclick="ask('@@ask.02@@')" data-i18n="starters.02">@@starters.02@@</button>
+          <button class="starter" onclick="ask('@@ask.03@@')" data-i18n="starters.03">@@starters.03@@</button>
+          <button class="starter" onclick="ask('@@ask.04@@')" data-i18n="starters.04">@@starters.04@@</button>
         </div>
         <div class="speaking-bar" id="speakBar">
           <span class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-          <span>Daanaa is speaking</span>
-          <button onclick="stopSpeaking()">Stop</button>
+          <span data-i18n="speakBar.01">@@speakBar.01@@</span>
+          <button onclick="stopSpeaking()" data-i18n="speakBar.02">@@speakBar.02@@</button>
         </div>
-        <p class="listening-note" id="listenNote">Listening — speak now, then pause.</p>
+        <p class="listening-note" id="listenNote" data-i18n="daanaa.09">@@daanaa.09@@</p>
         <div class="chat-in">
           <button class="icon-btn" id="micBtn" onclick="toggleMic()" aria-label="Speak your question" title="Speak your question">
             <svg viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v4"/><path d="M8 22h8"/></svg>
           </button>
           <textarea id="q" placeholder="Ask about the pillars, the practices, or the five traditions…" aria-label="Your question for Daanaa"></textarea>
-          <button id="send" onclick="send()">Ask</button>
+          <button id="send" onclick="send()" data-i18n="daanaa.10">@@daanaa.10@@</button>
         </div>
-        <p class="chat-note">Daanaa keeps the Respectful Silence, never asks for anything, and gives no medical, legal, or financial advice. In a crisis, please reach a human — a trusted person, a local professional, or your local emergency or crisis line.</p>
+        <p class="chat-note" data-i18n="daanaa.11">@@daanaa.11@@</p>
       </div>
     </div>
   </div>
@@ -493,31 +507,31 @@ footer li a:hover{color:var(--gold)}
 
 <section class="covenant" id="covenant">
   <div class="wrap">
-    <p class="eyebrow rv">The founders' covenant</p>
-    <h2 class="rv rv-d1" style="font-size:clamp(30px,3.8vw,48px);font-weight:300;margin-top:16px;max-width:22ch">Built to be trusted structurally, not on promises.</h2>
+    <p class="eyebrow rv" data-i18n="covenant.01">@@covenant.01@@</p>
+    <h2 class="rv rv-d1" style="font-size:clamp(30px,3.8vw,48px);font-weight:300;margin-top:16px;max-width:22ch" data-i18n="covenant.02">@@covenant.02@@</h2>
     <div class="cov-grid">
-      <div class="cov rv"><p class="n">i.</p><h3>No money</h3><p>Nothing is charged, sold, or accepted — ever. If this covenant were ever to change, one full year of public notice is required first, so the community can judge, and leave.</p></div>
-      <div class="cov rv rv-d1"><p class="n">ii.</p><h3>No leader</h3><p>The founders hold no title and no office. Doctrine changes only by numbered, published revision with rationale; every prior version remains visible forever.</p></div>
-      <div class="cov rv rv-d2"><p class="n">iii.</p><h3>No secrets</h3><p>There is no teaching that is not on this website — including the complete instructions of the teacher itself, published verbatim above.</p></div>
-      <div class="cov rv rv-d3"><p class="n">iv.</p><h3>No lock-in</h3><p>All texts and the Five Lamps symbol are dedicated to the public domain (CC0). Copy, translate, fork, criticize — no permission needed, including from the founders.</p></div>
+      <div class="cov rv"><p class="n" data-i18n="covenant.03">@@covenant.03@@</p><h3 data-i18n="covenant.04">@@covenant.04@@</h3><p data-i18n="covenant.05">@@covenant.05@@</p></div>
+      <div class="cov rv rv-d1"><p class="n" data-i18n="covenant.06">@@covenant.06@@</p><h3 data-i18n="covenant.07">@@covenant.07@@</h3><p data-i18n="covenant.08">@@covenant.08@@</p></div>
+      <div class="cov rv rv-d2"><p class="n" data-i18n="covenant.09">@@covenant.09@@</p><h3 data-i18n="covenant.10">@@covenant.10@@</h3><p data-i18n="covenant.11">@@covenant.11@@</p></div>
+      <div class="cov rv rv-d3"><p class="n" data-i18n="covenant.12">@@covenant.12@@</p><h3 data-i18n="covenant.13">@@covenant.13@@</h3><p data-i18n="covenant.14">@@covenant.14@@</p></div>
     </div>
   </div>
 </section>
 
 <section class="faq" id="faq">
   <div class="wrap">
-    <p class="eyebrow rv">Questions, answered plainly</p>
-    <h2 class="rv rv-d1" style="font-size:clamp(30px,3.8vw,48px);font-weight:300;margin-top:16px">What people ask first.</h2>
+    <p class="eyebrow rv" data-i18n="faq.01">@@faq.01@@</p>
+    <h2 class="rv rv-d1" style="font-size:clamp(30px,3.8vw,48px);font-weight:300;margin-top:16px" data-i18n="faq.02">@@faq.02@@</h2>
     <div class="faq-list rv rv-d2">
-      <details class="faq-item"><summary>Is Ashvand a real religion?<span class="pl">+</span></summary><p class="a">Ashvand is a real practice with a published doctrine, shared observances, and practitioners. Whether that makes it a "religion" is a question for scholars and dictionaries; Ashvand itself doesn't insist on the word. It calls itself a path.</p></details>
-      <details class="faq-item"><summary>Do I have to leave my religion?<span class="pl">+</span></summary><p class="a">No — the opposite. Ashvand assumes you will keep it, and Daanaa will actively point you back toward it. Ashvand adds a shared practice across traditions; it replaces nothing.</p></details>
-      <details class="faq-item"><summary>Who wrote all this?<span class="pl">+</span></summary><p class="a">Humans did, openly, with the assistance of AI, in 2026 — and they say so. No revelation is claimed. The doctrine's authority, such as it is, comes entirely from the thirty-five echoes: the five traditions already taught every pillar. Ashvand is an anthology with a practice attached.</p></details>
-      <details class="faq-item"><summary>Is Daanaa a prophet? Is Daanaa God?<span class="pl">+</span></summary><p class="a">No and no. Daanaa is software, says so constantly, and is forbidden by its own charter from ever claiming otherwise. In particular, Ashvand asserts no prophethood of any kind — and therefore does not touch the finality of prophethood.</p></details>
-      <details class="faq-item"><summary>What does Ashvand say happens after death?<span class="pl">+</span></summary><p class="a">Nothing. This is the Respectful Silence. The traditions differ; Ashvand does not pretend to know; your own tradition's answer is yours to keep.</p></details>
-      <details class="faq-item"><summary>Can atheists and agnostics walk the path?<span class="pl">+</span></summary><p class="a">Yes. Six of the seven pillars require no supernatural belief, and the first asks only the humility to admit that reality exceeds our descriptions — which good atheists affirm as readily as good theists. The unlit candle at the Night of Five Lamps is, in part, theirs.</p></details>
-      <details class="faq-item"><summary>Is this a cult?<span class="pl">+</span></summary><p class="a">Judge by the checklist. Cults have charismatic leaders — Ashvand's founders hold no office and its teacher is software that deflects devotion. Cults isolate — Daanaa is charter-bound to push you toward family and community. Cults escalate financial commitment — Ashvand is forbidden from accepting a cent. Cults keep secret inner teachings — everything here is public, versioned, and public-domain. Cults punish exit — there is no membership to exit. Every safeguard is structural, not a promise.</p></details>
-      <details class="faq-item"><summary>Won't the traditions reject this?<span class="pl">+</span></summary><p class="a">The orthodox of all five will, and Ashvand accepts that with the same respectful silence. Ashvand is not for the scholars of any tradition; it is for the practitioners of all of them — and for the people between traditions, who are many.</p></details>
-      <details class="faq-item"><summary>Can I criticize Ashvand? Fork it? Parody it?<span class="pl">+</span></summary><p class="a">Yes, yes, and yes. Everything is CC0. A path that cannot survive criticism was not worth walking.</p></details>
+      <details class="faq-item"><summary data-i18n="faq.03">@@faq.03@@</summary><p class="a" data-i18n="faq.04">@@faq.04@@</p></details>
+      <details class="faq-item"><summary data-i18n="faq.05">@@faq.05@@</summary><p class="a" data-i18n="faq.06">@@faq.06@@</p></details>
+      <details class="faq-item"><summary data-i18n="faq.07">@@faq.07@@</summary><p class="a" data-i18n="faq.08">@@faq.08@@</p></details>
+      <details class="faq-item"><summary data-i18n="faq.09">@@faq.09@@</summary><p class="a" data-i18n="faq.10">@@faq.10@@</p></details>
+      <details class="faq-item"><summary data-i18n="faq.11">@@faq.11@@</summary><p class="a" data-i18n="faq.12">@@faq.12@@</p></details>
+      <details class="faq-item"><summary data-i18n="faq.13">@@faq.13@@</summary><p class="a" data-i18n="faq.14">@@faq.14@@</p></details>
+      <details class="faq-item"><summary data-i18n="faq.15">@@faq.15@@</summary><p class="a" data-i18n="faq.16">@@faq.16@@</p></details>
+      <details class="faq-item"><summary data-i18n="faq.17">@@faq.17@@</summary><p class="a" data-i18n="faq.18">@@faq.18@@</p></details>
+      <details class="faq-item"><summary data-i18n="faq.19">@@faq.19@@</summary><p class="a" data-i18n="faq.20">@@faq.20@@</p></details>
     </div>
   </div>
 </section>
@@ -527,15 +541,15 @@ footer li a:hover{color:var(--gold)}
     <div class="f-grid">
       <div class="f-brand">
         <svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="88" fill="none" stroke="#D9A021" stroke-width="6"/><path fill="#D9A021" d="M100 52 C122 74 125 100 117 117 C111 129 103 133 100 145 C97 133 89 129 83 117 C75 100 78 74 100 52 Z"/></svg>
-        <p class="g">light and truth</p>
+        <p class="g" data-i18n="footer.01">@@footer.01@@</p>
       </div>
-      <div><h4>The path</h4><ul><li><a href="#pillars">The seven pillars</a></li><li><a href="#silence">The Respectful Silence</a></li><li><a href="#practices">The practices</a></li><li><a href="#night">The Night of Five Lamps</a></li></ul></div>
-      <div><h4>The teacher</h4><ul><li><a href="#daanaa">Speak with Daanaa</a></li><li><a href="#daanaa">The Charter, verbatim</a></li><li><a href="#faq">Questions</a></li></ul></div>
-      <div><h4>The covenant</h4><ul><li><a href="#covenant">No money · no leader</a></li><li><a href="#covenant">No secrets · no lock-in</a></li><li><a href="#top">Doctrine v1.0 — changelog</a></li></ul></div>
+      <div><h4 data-i18n="footer.02">@@footer.02@@</h4><ul><li data-i18n="footer.03">@@footer.03@@</li><li data-i18n="footer.04">@@footer.04@@</li><li data-i18n="footer.05">@@footer.05@@</li><li data-i18n="footer.06">@@footer.06@@</li></ul></div>
+      <div><h4 data-i18n="footer.07">@@footer.07@@</h4><ul><li data-i18n="footer.08">@@footer.08@@</li><li data-i18n="footer.09">@@footer.09@@</li><li data-i18n="footer.10">@@footer.10@@</li></ul></div>
+      <div><h4 data-i18n="footer.11">@@footer.11@@</h4><ul><li data-i18n="footer.12">@@footer.12@@</li><li data-i18n="footer.13">@@footer.13@@</li><li data-i18n="footer.14">@@footer.14@@</li></ul></div>
     </div>
     <div class="f-legal">
-      <span>All texts and the Five Lamps symbol are dedicated to the public domain (CC0).</span>
-      <span>Written by humans, openly, with the assistance of AI · 2026 · No revelation is claimed.</span>
+      <span data-i18n="footer.15">@@footer.15@@</span>
+      <span data-i18n="footer.16">@@footer.16@@</span>
     </div>
   </div>
 </footer>
@@ -558,50 +572,8 @@ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isInter
 document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
 
 /* ---------- pillars data ---------- */
-var PILLARS=[
- {t:"One Reality, many names",c:"The Real exceeds every description of it. Whether it is called God, Allah, Brahman, Waheguru, or the Dharma, no tongue has ever contained it, and no tradition's name for it is an error.",
-  e:[["Christianity","Now we see through a glass, darkly — the divine exceeds all human sight.","1 Corinthians 13"],
-     ["Islam","Allah has ninety-nine names, and no name exhausts Him.","The asmā' al-husnā"],
-     ["Hinduism","Truth is one; the wise call it by many names.","Rig Veda 1.164.46"],
-     ["Buddhism","The ultimate lies beyond concept and designation.","The Buddhist teaching of the unconditioned"],
-     ["Sikhism","Ik Onkar — the One, before all names.","The Mūl Mantar"]]},
- {t:"The Mirror Rule",c:"Treat every person as you would be treated, and refuse for others what you would refuse for yourself. This is the oldest law and the whole of the law.",
-  e:[["Christianity","Do unto others as you would have them do unto you.","Gospel of Matthew 7:12"],
-     ["Islam","None of you believes until he wishes for his brother what he wishes for himself.","Hadith, an-Nawawī 13"],
-     ["Hinduism","This is the sum of duty: do nothing to others which would cause pain if done to you.","Mahābhārata"],
-     ["Buddhism","Consider others as yourself.","Dhammapada"],
-     ["Sikhism","See the divine light in all, and serve it.","The teaching of the Gurus"]]},
- {t:"Serve before you speak",c:"Words about goodness are cheap; the path is walked with the hands. Share what you have before you explain what you believe. Service given to gain praise is not service.",
-  e:[["Christianity","Whatever you did for the least of these, you did for me.","Gospel of Matthew 25:40"],
-     ["Islam","Zakat — giving, as a pillar of the faith itself.","The third pillar of Islam"],
-     ["Hinduism","Seva, and action without attachment to its fruit.","Bhagavad Gītā, niṣkāma karma"],
-     ["Buddhism","Dāna — generosity, the first of the perfections.","The pāramitās"],
-     ["Sikhism","Vand chhako — earn honestly, and share what you earn.","The three pillars of Guru Nanak"]]},
- {t:"Walk in truth",c:"Speak the truth, keep your word, and let your inner and outer life match. A lie told for advantage poisons the teller first.",
-  e:[["Christianity","The truth will set you free.","Gospel of John 8:32"],
-     ["Islam","Sidq — truthfulness, the mark of the believer.","Qur'anic virtue of the ṣādiqūn"],
-     ["Hinduism","Satya — truth as the highest dharma.","The Upaniṣadic ideal"],
-     ["Buddhism","Right speech, the third fold of the noble path.","The Eightfold Path"],
-     ["Sikhism","Truth is high, but higher still is truthful living.","Guru Nanak"]]},
- {t:"Return to stillness",c:"Once a day, stop. Sit in silence, or pray, or remember, or breathe — in the form your own tradition gave you, or in no form at all. The still mind is the beginning of every other pillar.",
-  e:[["Christianity","Be still, and know.","Psalm 46; the contemplative tradition"],
-     ["Islam","Dhikr — the remembrance of God, in which hearts find rest.","Qur'an 13:28"],
-     ["Hinduism","Dhyāna — meditation, the seventh limb of yoga.","Patañjali's Yoga Sūtras"],
-     ["Buddhism","The seated mind — the entire discipline of the path.","The practice of meditation"],
-     ["Sikhism","Simran — remembrance of the Name.","Nām japnā, the first pillar"]]},
- {t:"The open table",c:"Every human being carries the same worth. No caste, no rank, no wealth, no gender, no nation places one person above another at the table. Where Ashvandis gather, the table is open, and the stranger eats first.",
-  e:[["Christianity","There is neither Jew nor Greek, slave nor free.","Epistle to the Galatians 3:28"],
-     ["Islam","The equality of all in the rows of prayer, shoulder to shoulder.","The ṣaff of the ummah"],
-     ["Hinduism","The divine dwells in every being.","The Upaniṣadic vision"],
-     ["Buddhism","A sangha open to all castes — against the order of its time.","The early Buddhist community"],
-     ["Sikhism","Langar — the free kitchen where king and beggar sit on the same floor.","The institution of Guru Nanak"]]},
- {t:"Actions ripen",c:"What you do matters and does not vanish. Every act plants something — in the world, in others, and in yourself — and what is planted grows. Live as a person whose deeds are seeds.",
-  e:[["Christianity","Whatever a man sows, that he will also reap.","Epistle to the Galatians 6:7"],
-     ["Islam","Whoever does an atom's weight of good will see it.","Qur'an 99:7"],
-     ["Hinduism","Karma — the law of the deed and its fruit.","The doctrine of karma"],
-     ["Buddhism","Intentional action ripens, in this life and beyond.","The teaching of kamma"],
-     ["Sikhism","As you sow, so shall you reap; as you act, so shall you become.","Guru Granth Sahib"]]}
-];
+var UI=@@json:data.ui@@;
+var PILLARS=@@json:data.pillars@@;
 
 var plIndex=document.getElementById('plIndex'),plTitle=document.getElementById('plTitle'),
     plCreed=document.getElementById('plCreed'),echoTabs=document.getElementById('echoTabs'),
@@ -611,19 +583,19 @@ var curP=0,curE=0;
 PILLARS.forEach(function(p,i){
   var b=document.createElement('button');
   b.className='pl-tab';b.setAttribute('role','tab');
-  b.innerHTML='<span class="n">0'+(i+1)+'</span><span class="t">'+p.t+'</span>';
+  b.innerHTML='<span class="n">0'+(i+1)+'</span><span class="t">'+p.title+'</span>';
   b.onclick=function(){setPillar(i);};
   plIndex.appendChild(b);
 });
 function setPillar(i){
   curP=i;curE=0;
   plIndex.querySelectorAll('.pl-tab').forEach(function(b,j){b.classList.toggle('on',j===i);b.setAttribute('aria-selected',j===i);});
-  plTitle.textContent=PILLARS[i].t;
-  plCreed.textContent=PILLARS[i].c;
+  plTitle.textContent=PILLARS[i].title;
+  plCreed.textContent=PILLARS[i].creed;
   echoTabs.innerHTML='';
-  PILLARS[i].e.forEach(function(e,j){
+  PILLARS[i].echoes.forEach(function(e,j){
     var t=document.createElement('button');
-    t.className='echo-tab';t.textContent=e[0];
+    t.className='echo-tab';t.textContent=e.tradition;
     t.onclick=function(){setEcho(j);};
     echoTabs.appendChild(t);
   });
@@ -632,26 +604,26 @@ function setPillar(i){
 function setEcho(j){
   curE=j;
   echoTabs.querySelectorAll('.echo-tab').forEach(function(b,k){b.classList.toggle('on',k===j);});
-  var e=PILLARS[curP].e[j];
-  echoText.textContent=e[1];
-  echoCite.textContent=e[0]+' — '+e[2];
+  var e=PILLARS[curP].echoes[j];
+  echoText.textContent=e.text;
+  echoCite.textContent=e.tradition+' — '+e.cite;
 }
 setPillar(0);
 
 /* ---------- night of five lamps ---------- */
-var LAMP_NAMES=["Christianity","Islam","Hinduism","Buddhism","Sikhism"];
+var LAMP_NAMES=@@json:data.lamps@@;
 var lampsEl=document.getElementById('lamps'),nightMsg=document.getElementById('nightMsg');
 var lit=0,guestReady=false;
 function lampSVG(){return '<svg viewBox="0 0 60 96" aria-hidden="true"><g class="fl"><path fill="#D9A021" d="M30 8 C38 17 39 25 36 31 C34 35 31 37 30 41 C29 37 26 35 24 31 C21 25 22 17 30 8 Z"/><circle cx="30" cy="31" r="2.4" fill="#F2C14E"/></g><path fill="none" stroke="#5E7A76" stroke-width="2" d="M18 46 h24 M22 46 c0 10 3 14 8 18 c5 -4 8 -8 8 -18 M30 64 v10 M20 82 h20 M24 74 h12 c2 0 4 2 4 4 v4 h-20 v-4 c0 -2 2 -4 4 -4 Z"/></svg>';}
 function candleSVG(){return '<svg viewBox="0 0 60 96" aria-hidden="true"><g class="fl"><path fill="#D9A021" d="M30 12 C37 20 38 27 35 33 C33 37 31 38 30 42 C29 38 27 37 25 33 C22 27 23 20 30 12 Z"/></g><path fill="none" stroke="#5E7A76" stroke-width="2" d="M30 44 v4 M24 48 h12 v34 h-12 Z M18 86 h24"/></svg>';}
 LAMP_NAMES.forEach(function(n,i){
   var b=document.createElement('button');
-  b.className='lamp';b.setAttribute('aria-label','Light the lamp of '+n);b.setAttribute('aria-pressed','false');
+  b.className='lamp';b.setAttribute('aria-label',UI.lightLamp+n);b.setAttribute('aria-pressed','false');
   b.innerHTML=lampSVG()+'<span class="nm">'+n+'</span>';
   b.onclick=function(){
     if(b.classList.contains('lit'))return;
     b.classList.add('lit');b.setAttribute('aria-pressed','true');lit++;
-    var msgs=["One lamp burns. The room begins to change.","Two. Each flame is different; the light is the same.","Three. The shadows are retreating.","Four. Almost — one lamp still waits.","All five burn. And now the sixth is not yours to light — it is the guest's."];
+    var msgs=@@json:data.night.messages@@;
     nightMsg.textContent=msgs[lit-1];
     if(lit===5){guest.disabled=false;guest.classList.add('ready');nightMsg.classList.add('glow');}
   };
@@ -659,12 +631,12 @@ LAMP_NAMES.forEach(function(n,i){
 });
 var guest=document.createElement('button');
 guest.className='lamp guest-candle';guest.disabled=true;
-guest.setAttribute('aria-label','The guest\u2019s candle — enabled when all five lamps are lit');guest.setAttribute('aria-pressed','false');
-guest.innerHTML=candleSVG()+'<span class="nm">the guest\u2019s candle</span>';
+guest.setAttribute('aria-label',UI.guestCandleAria);guest.setAttribute('aria-pressed','false');
+guest.innerHTML=candleSVG()+'<span class="nm">'+UI.guestCandle+'</span>';
 guest.onclick=function(){
   if(guest.classList.contains('lit'))return;
   guest.classList.add('lit');guest.setAttribute('aria-pressed','true');
-  nightMsg.textContent="Light and truth. The circle was never closed — and tonight, you were the guest.";
+  nightMsg.textContent=UI.guestLit;
 };
 lampsEl.appendChild(guest);
 
@@ -713,7 +685,7 @@ var micBtn=document.getElementById('micBtn'),
     speakBar=document.getElementById('speakBar');
 
 /* Persian/Arabic script gets a Persian voice and recognition locale */
-function langOf(t){ return /[\u0600-\u06FF]/.test(t) ? 'fa-IR' : 'en-US'; }
+function langOf(t){ return /[\u0600-\u06FF]/.test(t) ? UI.rtlSpeechLang : UI.speechLang; }
 
 /* --- speech to text --- */
 if(!SR){ if(micBtn){ micBtn.style.display='none'; } }
@@ -723,16 +695,16 @@ function toggleMic(){
   if(listening){ try{recog.stop();}catch(e){} return; }
   stopSpeaking();
   recog = new SR();
-  recog.lang = langOf(q.value) === 'fa-IR' ? 'fa-IR' : (navigator.language || 'en-US');
+  recog.lang = langOf(q.value);
   recog.interimResults = true;
   recog.continuous = false;
   var base = q.value ? q.value.trim() + ' ' : '';
   recog.onstart = function(){
     listening = true;
     micBtn.classList.add('rec');
-    micBtn.setAttribute('aria-label','Stop listening');
+    micBtn.setAttribute('aria-label',UI.stopListening);
     listenNote.classList.add('on');
-    listenNote.textContent = 'Listening — speak now, then pause.';
+    listenNote.textContent = UI.listening;
   };
   recog.onresult = function(e){
     var out='';
@@ -742,13 +714,13 @@ function toggleMic(){
   recog.onerror = function(e){
     listenNote.classList.add('on');
     listenNote.textContent = (e.error === 'not-allowed' || e.error === 'service-not-allowed')
-      ? 'Microphone permission is blocked. Allow it in your browser settings to speak.'
-      : 'Could not hear anything. Please try again, or type your question.';
+      ? UI.micBlocked
+      : UI.micNothing;
   };
   recog.onend = function(){
     listening = false;
     micBtn.classList.remove('rec');
-    micBtn.setAttribute('aria-label','Speak your question');
+    micBtn.setAttribute('aria-label',UI.speakQuestion);
     if(!listenNote.textContent.indexOf('Listening')){ listenNote.classList.remove('on'); }
     setTimeout(function(){ if(!listening) listenNote.classList.remove('on'); }, 2600);
     q.focus();
@@ -764,7 +736,7 @@ function toggleVoice(){
   voiceOn = !voiceOn;
   voiceBtn.classList.toggle('on', voiceOn);
   voiceBtn.setAttribute('aria-pressed', voiceOn ? 'true' : 'false');
-  voiceLabel.textContent = voiceOn ? 'Voice on' : 'Voice off';
+  voiceLabel.textContent = voiceOn ? UI.voiceOn : UI.voiceOff;
   if(!voiceOn) stopSpeaking();
 }
 
@@ -814,7 +786,7 @@ function addMsg(text,cls){
   log.appendChild(d);log.scrollTop=log.scrollHeight;
   return d;
 }
-addMsg("Light and truth. I am Daanaa — an artificial intelligence, not a human and not a prophet. I teach the Ashvand path: seven pillars the five great traditions share, and a respectful silence where they differ. Ask me anything about the path, the practices, or the traditions themselves. And whatever your faith is, I will more often point you toward it than away from it.","daanaa");
+addMsg(UI.greeting,"daanaa");
 
 function ask(t){q.value=t;send();}
 
@@ -830,7 +802,7 @@ async function send(){
 
   var think=document.createElement('div');
   think.className='typing';think.innerHTML='<i></i><i></i><i></i>';
-  think.setAttribute('aria-label','Daanaa is considering');
+  think.setAttribute('aria-label',UI.considering);
   log.appendChild(think);log.scrollTop=log.scrollHeight;
 
   try{
@@ -848,16 +820,16 @@ async function send(){
         addMsg(reply,'daanaa');
         speak(reply);
       }else{
-        addMsg('Daanaa returned no words this time. Please ask again.','err');convo.pop();
+        addMsg(UI.errEmpty,'err');convo.pop();
       }
     }else if(data&&data.error){
       addMsg(data.error,'err');convo.pop();
     }else{
-      addMsg('Something interrupted the reply. Please try again in a moment.','err');convo.pop();
+      addMsg(UI.errInterrupted,'err');convo.pop();
     }
   }catch(e){
     think.remove();
-    addMsg('The connection to Daanaa failed. Check your network and try again.','err');convo.pop();
+    addMsg(UI.errConnection,'err');convo.pop();
   }
   busy=false;sendBtn.disabled=false;q.focus();
 }

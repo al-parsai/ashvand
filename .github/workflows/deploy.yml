@@ -64,6 +64,26 @@ jobs:
       # its host key, this step fails loudly and the fingerprint below
       # must be updated deliberately.
       # ---------------------------------------------------------------
+      # ---------------------------------------------------------------
+      # Build the static language editions. Generated pages are never
+      # committed: template.html + i18n/*.json are the source of truth,
+      # and the build fails loudly on any missing or unknown key rather
+      # than shipping a page with @@nav.03@@ visible to a reader.
+      # ---------------------------------------------------------------
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Build language editions
+        run: |
+          set -euo pipefail
+          node build.js
+          test -s dist/index.html || { echo "::error::build produced no English page"; exit 1; }
+          if grep -rq '@@[a-z]' dist/ 2>/dev/null; then
+            echo "::error::an unreplaced placeholder reached the output"; exit 1
+          fi
+          echo "Editions built:"; find dist -name index.html | sort | sed 's/^/  /'
+
       - name: Configure SSH
         env:
           EXPECTED_HOST_FP: "SHA256:GGQa+ugTNisCm+Rv6LvbJx694twrBVv+BlKi2enfjdg"
@@ -107,7 +127,7 @@ jobs:
       # "prune". Excluded paths (config.php, .ratelimit/) are protected
       # from deletion either way.
       # ---------------------------------------------------------------
-      - name: Deploy
+      - name: Deploy dist/ to public_html
         run: |
           set -euo pipefail
           PRUNE=""
@@ -118,7 +138,7 @@ jobs:
           rsync -rltvz --checksum $PRUNE \
             --exclude-from=.deployignore \
             -e "ssh -i ~/.ssh/deploy_key -p $SG_PORT -o StrictHostKeyChecking=yes" \
-            ./ "${{ secrets.SG_USER }}@${{ secrets.SG_HOST }}:${{ secrets.SG_PATH }}"
+            dist/ "${{ secrets.SG_USER }}@${{ secrets.SG_HOST }}:${{ secrets.SG_PATH }}"
 
       # ---------------------------------------------------------------
       # AUTHORITATIVE CHECK. Runs on the server itself, so it is not
