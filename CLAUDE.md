@@ -152,8 +152,34 @@ RTL webfont loaded only by the Arabic and Persian editions, sitemap.
 - Regression test for the refactor: the generated English page must diff clean
   against the baseline `index.html` from commit `bd24e8a`.
 
-**The thirty-five scripture echoes must not be machine-translated.** Al confirmed
-the policy on 2026-08-10: where the target language *is* the scripture's own
+### The thirty-five echoes
+
+**Only about fifteen are actual quotations.** The rest are Ashvand's own descriptive
+prose about a tradition — "Zakat — giving, as a pillar of the faith itself", "Dāna —
+generosity, the first of the perfections", "Langar — the free kitchen where king and
+beggar sit on the same floor". Those translate as ordinary prose, keeping the technical
+term transliterated. The genuine quotations are: 1 Cor 13:12, Matt 7:12, Matt 25:40,
+John 8:32, Psalm 46:10, Gal 3:28, Gal 6:7, an-Nawawī 13, Qur'an 13:28 and 99:7, Rig Veda
+1.164.46, the Mahābhārata "sum of duty" line, Dhammapada 129–130, Guru Nanak's "truth is
+high, but higher still is truthful living", and the Guru Granth Sahib sowing verse.
+
+**Use public-domain editions only.** The site is dedicated CC0 and the footer says so;
+embedding a copyrighted translation would make that claim false. So: Reina-Valera 1909
+(es), Louis Segond 1910 (fr), Luther 1912 (de), Almeida (pt), Russian Synodal (ru), and
+the original text for Arabic, Gurmukhi and Sanskrit, which are public domain by age.
+
+**Where no public-domain translation exists** — chiefly Qur'anic and Sikh texts in the
+European languages — show the **original script, with Ashvand's own rendering below it,
+marked plainly as Ashvand's rendering and not as a canonical translation.** The reader
+who knows the verse sees the real words, nobody is misled about authority, and the CC0
+dedication stays true. (Decision by Al, 2026-08-10.)
+
+This needs an optional `original` field on an echo, and a rendering that shows it in its
+own script above the translation. **The English edition is unaffected** — public-domain
+English translations exist for everything — so no Arabic script returns to the English
+page.
+
+**The echoes must never be machine-translated.** Al confirmed the policy on 2026-08-10: where the target language *is* the scripture's own
 language, use the original — the actual Qur'anic Arabic and hadith wording for
 `ar`, Gurmukhi Gurbani for `pa`, the Sanskrit/Hindi source for `hi`. Elsewhere use
 published canonical translations. Anything that cannot be sourced confidently
