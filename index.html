@@ -16,7 +16,7 @@
 <title>Ashvand — a path, not a religion</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=Vazirmatn:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
   --parchment:#F7F3EA; --parchment-2:#FCFAF4; --ink:#141A1C; --ink-soft:#3A4448;
@@ -25,7 +25,7 @@
   --night:#0C1A1E; --night-2:#10242A; --hair:#E4DCC8; --hair-dark:#23393E;
   --serif:'Fraunces',Georgia,'Times New Roman',serif;
   --sans:'Inter','Segoe UI',system-ui,sans-serif;
-  --fa:'Vazirmatn','Segoe UI',Tahoma,sans-serif;
+  --fa:'Vazirmatn','Segoe UI',Tahoma,sans-serif; /* unused on LTR editions; the build re-adds the webfont for ar/fa */
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -36,7 +36,6 @@ a{color:var(--teal);text-decoration:none}
 button{font-family:inherit;cursor:pointer}
 .wrap{max-width:1180px;margin:0 auto;padding:0 clamp(20px,4vw,48px)}
 .eyebrow{font-family:var(--sans);font-size:11.5px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-deep)}
-.fa{font-family:var(--fa);direction:rtl}
 
 /* ---------- reveal system ---------- */
 .js .rv{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.22,.6,.2,1),transform .9s cubic-bezier(.22,.6,.2,1)}
@@ -69,7 +68,6 @@ nav.solid{background:rgba(247,243,234,.86);backdrop-filter:blur(14px);box-shadow
 .hero h1{font-size:clamp(46px,6.4vw,88px);line-height:1.04;font-weight:300;letter-spacing:-.01em}
 .hero h1 em{font-style:italic;font-weight:400;color:var(--teal-deep)}
 .hero .lede{margin-top:30px;max-width:46ch;font-size:clamp(17px,1.4vw,19px);color:var(--ink-soft)}
-.hero .h-fa{margin-top:18px;color:var(--gold-deep);font-size:17px}
 .hero .h-actions{margin-top:38px;display:flex;gap:16px;flex-wrap:wrap;font-family:var(--sans);font-size:14px;font-weight:500}
 .btn-ink{background:var(--ink);color:var(--parchment);border:none;padding:15px 30px;border-radius:99px;transition:background .25s,transform .25s}
 .btn-ink:hover{background:var(--teal-deep);transform:translateY(-1px)}
@@ -108,7 +106,6 @@ nav.solid{background:rgba(247,243,234,.86);backdrop-filter:blur(14px);box-shadow
 .src{background:var(--parchment-2);padding:34px 24px 30px;position:relative;transition:background .35s}
 .src:hover{background:var(--teal-mist)}
 .src .glyph{font-size:30px;font-weight:400;color:var(--teal-deep);font-family:var(--serif);font-style:italic}
-.src .glyph.fa{font-family:var(--fa);font-style:normal}
 .src h3{font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-top:16px}
 .src p{font-size:13.5px;color:var(--ink-soft);margin-top:8px;line-height:1.6;font-family:var(--sans)}
 .src .lamp-dot{position:absolute;top:26px;right:22px;width:8px;height:8px;border-radius:50%;background:var(--gold);opacity:.85}
@@ -289,7 +286,6 @@ footer{background:var(--night);color:#8FA6A2;padding:70px 0 50px}
 .f-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px}
 .f-brand svg{width:44px;height:44px;margin-bottom:18px}
 .f-brand .g{font-style:italic;color:#C9D6D3;font-size:17px}
-.f-brand .g-fa{font-family:var(--fa);direction:rtl;text-align:left;color:var(--gold);margin-top:6px;font-size:15px}
 footer h4{font-family:var(--sans);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#6C817D;font-weight:600;margin-bottom:16px}
 footer li{list-style:none;margin-bottom:10px;font-family:var(--sans);font-size:13.5px}
 footer li a{color:#AEC0BC;transition:color .25s}
@@ -331,8 +327,7 @@ footer li a:hover{color:var(--gold)}
   <div>
     <h1 class="rv">A path,<br><em>not a religion</em><br>to convert to.</h1>
     <p class="lede rv rv-d1">Ashvand gathers the seven teachings that Christianity, Islam, Hinduism, Buddhism, and Sikhism hold in common — and practises them deliberately, across the boundaries of the traditions. It claims no revelation, no prophet, and no exclusive truth. You may walk this path and keep your faith. Ashvand assumes you will.</p>
-    <p class="h-fa fa rv rv-d2">نور و راستی — light and truth</p>
-    <div class="h-actions rv rv-d3">
+    <div class="h-actions rv rv-d2">
       <button class="btn-ink" onclick="document.getElementById('daanaa').scrollIntoView({behavior:'smooth'})">Speak with Daanaa</button>
       <button class="btn-ghost" onclick="document.getElementById('pillars').scrollIntoView({behavior:'smooth'})">Read the pillars</button>
     </div>
@@ -375,7 +370,7 @@ footer li a:hover{color:var(--gold)}
     </div>
     <div class="src-grid">
       <div class="src rv"><span class="lamp-dot"></span><div class="glyph">Alētheia</div><h3>Christianity</h3><p>"The truth will set you free." The open table of Galatians; the least of these.</p></div>
-      <div class="src rv rv-d1"><span class="lamp-dot"></span><div class="glyph fa">حق</div><h3>Islam</h3><p>Al-Haqq, the Real, among the ninety-nine names. Zakat; the equal rows of prayer.</p></div>
+      <div class="src rv rv-d1"><span class="lamp-dot"></span><div class="glyph">Haqq</div><h3>Islam</h3><p>Al-Haqq, the Real, among the ninety-nine names. Zakat; the equal rows of prayer.</p></div>
       <div class="src rv rv-d2"><span class="lamp-dot"></span><div class="glyph">Satya</div><h3>Hinduism</h3><p>"Truth is one; the wise call it by many names." Seva; action without claim to its fruit.</p></div>
       <div class="src rv rv-d3"><span class="lamp-dot"></span><div class="glyph">Sacca</div><h3>Buddhism</h3><p>The four noble truths; right speech; dāna, generosity as the first perfection.</p></div>
       <div class="src rv rv-d4"><span class="lamp-dot"></span><div class="glyph">Sach</div><h3>Sikhism</h3><p>"Truth is high, but higher still is truthful living." Langar — the free kitchen for all.</p></div>
@@ -476,7 +471,6 @@ footer li a:hover{color:var(--gold)}
           <button class="starter" onclick="ask('Do I have to leave my religion to walk this path?')">Do I leave my religion?</button>
           <button class="starter" onclick="ask('What happens after we die?')">What happens after death?</button>
           <button class="starter" onclick="ask('How do I start the Daily Stillness if I have never meditated or prayed?')">How do I begin?</button>
-          <button class="starter" onclick="ask('آیا میتوانم با شما فارسی صحبت کنم؟ اشوند چیست؟')">فارسی</button>
         </div>
         <div class="speaking-bar" id="speakBar">
           <span class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
@@ -534,7 +528,6 @@ footer li a:hover{color:var(--gold)}
       <div class="f-brand">
         <svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="88" fill="none" stroke="#D9A021" stroke-width="6"/><path fill="#D9A021" d="M100 52 C122 74 125 100 117 117 C111 129 103 133 100 145 C97 133 89 129 83 117 C75 100 78 74 100 52 Z"/></svg>
         <p class="g">light and truth</p>
-        <p class="g-fa fa">نور و راستی</p>
       </div>
       <div><h4>The path</h4><ul><li><a href="#pillars">The seven pillars</a></li><li><a href="#silence">The Respectful Silence</a></li><li><a href="#practices">The practices</a></li><li><a href="#night">The Night of Five Lamps</a></li></ul></div>
       <div><h4>The teacher</h4><ul><li><a href="#daanaa">Speak with Daanaa</a></li><li><a href="#daanaa">The Charter, verbatim</a></li><li><a href="#faq">Questions</a></li></ul></div>
