@@ -1,4 +1,26 @@
-# DEPLOY-SETUP.md — one-time setup for automatic deploys
+# DEPLOY-SETUP.md — automatic deploys
+
+> **STATUS: LIVE since 2026-08-10.** Setup is complete and the first deploy
+> succeeded. The steps below are kept as a record of how it was built and as
+> a rebuild guide. **You do not need to do any of them again.**
+>
+> **To deploy from now on: `git push`. That is the whole procedure.**
+>
+> Live configuration:
+>
+> | | |
+> |---|---|
+> | Repo | https://github.com/al-parsai/ashvand (public) |
+> | Host | `c1117079.sgvps.net`, port `18765` |
+> | User | `u12-25mqrrrzzzb9` |
+> | Web root | `/home/customer/www/ashvand.org/public_html/` |
+> | Deploy key | `github-deploy`, RSA 4096, no passphrase, IPs Allowed = All |
+> | Private key | `C:\Users\al\.ssh\ashvand_deploy` (also in GitHub secret `SG_SSH_KEY`) |
+> | rsync | present at `/bin/rsync` |
+>
+> Verified on the server during setup: `public_html` also contains
+> `.well-known/` (Let's Encrypt ACME) and `config.php`. Both are excluded in
+> `.deployignore`, so rsync neither uploads nor deletes them.
 
 Goal: `git push` → ashvand.org updates by itself. No File Manager, no drag-and-drop,
 no forgetting the config.php check.
