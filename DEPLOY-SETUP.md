@@ -151,3 +151,36 @@ source in `deploy.yml` from `./` to `dist/` and add a build step before it.
 Site Tools → Devs → SSH Keys Manager → delete `github-deploy`. That instantly kills
 the deploy pipeline and nothing else. Rotating it is: generate a new key, replace
 the `SG_SSH_KEY` secret.
+
+---
+
+## Troubleshooting
+
+**"config.php returned 202, expected 403" (or every URL returns 202).**
+Not a real failure. SiteGround's bot-protection layer answers GitHub's runner IP
+ranges with 202 instead of passing the request to Apache, so an external probe
+from CI cannot see real status codes. This is why `Verify on the server` runs
+over SSH and is the authoritative gate, while the external canary can only warn.
+Confirm the truth from an ordinary browser: `https://ashvand.org/config.php`
+must show 403.
+
+**"Could not retrieve the SiteGround host key after 5 attempts."**
+SiteGround intermittently drops the first SSH connection — this also happens on
+a normal manual login. The workflow already retries five times with backoff.
+If it still fails, re-run the workflow; if it fails repeatedly, check Site Tools
+for an IP block.
+
+**"Host key fingerprint mismatch."**
+The workflow pins SiteGround's host fingerprint
+(`SHA256:GGQa+ugTNisCm+Rv6LvbJx694twrBVv+BlKi2enfjdg`, recorded 2026-08-10).
+Either SiteGround rotated the host key — verify manually, then update
+`EXPECTED_HOST_FP` in `deploy.yml` — or something is intercepting the
+connection. Do not "fix" this by disabling the check.
+
+**"LEAKED: <file> must not be on the server."**
+Repo plumbing reached the web root. Delete it in File Manager and check
+`.deployignore`.
+
+**A change deployed but is not visible.**
+SiteGround caches aggressively. Site Tools → Speed → Caching → Flush, then
+hard-refresh. Check this before assuming the deploy failed.
