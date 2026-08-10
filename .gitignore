@@ -1,0 +1,21 @@
+# NEVER commit the live API key. config.php exists only on the SiteGround server.
+config.php
+
+# Runtime rate-limit state written by daanaa.php
+.ratelimit/
+
+# Node build tooling for the i18n refactor
+node_modules/
+npm-debug.log*
+package-lock.json.bak
+
+# OneDrive / OS cruft
+Thumbs.db
+ehthumbs.db
+desktop.ini
+.DS_Store
+~$*
+*.tmp
+
+# Junk this session could not delete (see note); safe to remove manually
+_to_delete/

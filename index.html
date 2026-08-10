@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0C1A1E">
+<meta name="description" content="Ashvand gathers the seven teachings Christianity, Islam, Hinduism, Buddhism and Sikhism hold in common. No revelation, no membership, no money. Speak with Daanaa, an AI teacher that says so.">
+<meta property="og:title" content="Ashvand — a path, not a religion">
+<meta property="og:description" content="Seven teachings the five great traditions share, and a respectful silence where they differ.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ashvand.org/">
+<title>Ashvand — a path, not a religion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=Vazirmatn:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --parchment:#F7F3EA; --parchment-2:#FCFAF4; --ink:#141A1C; --ink-soft:#3A4448;
+  --teal:#1F7A8C; --teal-deep:#14505C; --teal-mist:#EAF1F0;
+  --gold:#D9A021; --gold-deep:#A87A14; --gold-pale:#F3E3B8;
+  --night:#0C1A1E; --night-2:#10242A; --hair:#E4DCC8; --hair-dark:#23393E;
+  --serif:'Fraunces',Georgia,'Times New Roman',serif;
+  --sans:'Inter','Segoe UI',system-ui,sans-serif;
+  --fa:'Vazirmatn','Segoe UI',Tahoma,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--parchment);color:var(--ink);font-family:var(--serif);font-size:17px;line-height:1.75;-webkit-font-smoothing:antialiased}
+::selection{background:var(--gold-pale)}
+img,svg{display:block}
+a{color:var(--teal);text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(20px,4vw,48px)}
+.eyebrow{font-family:var(--sans);font-size:11.5px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-deep)}
+.fa{font-family:var(--fa);direction:rtl}
+
+/* ---------- reveal system ---------- */
+.js .rv{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.22,.6,.2,1),transform .9s cubic-bezier(.22,.6,.2,1)}
+.js .rv.in{opacity:1;transform:none}
+.js .rv-d1{transition-delay:.12s}.js .rv-d2{transition-delay:.24s}.js .rv-d3{transition-delay:.36s}.js .rv-d4{transition-delay:.48s}
+@media (prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none;transition:none}}
+
+/* ---------- preloader ---------- */
+#veil{position:fixed;inset:0;background:var(--night);z-index:100;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:22px;transition:opacity .8s ease,visibility .8s}
+#veil.gone{opacity:0;visibility:hidden}
+#veil .word{font-family:var(--serif);color:var(--parchment);letter-spacing:.5em;font-size:14px;font-weight:300;padding-left:.5em}
+@media (prefers-reduced-motion:reduce){#veil{display:none}}
+
+/* ---------- nav ---------- */
+nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .4s,box-shadow .4s;padding:18px 0}
+nav.solid{background:rgba(247,243,234,.86);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--hair)}
+.nav-in{display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:12px;color:var(--ink)}
+.brand svg{width:30px;height:30px}
+.brand .bw{font-family:var(--serif);font-weight:500;letter-spacing:.32em;font-size:15px;padding-left:.32em}
+.links{display:flex;gap:34px;align-items:center;font-family:var(--sans);font-size:13.5px;font-weight:500}
+.links a{color:var(--ink-soft);transition:color .25s}
+.links a:hover{color:var(--teal-deep)}
+.cta{background:var(--ink);color:var(--parchment) !important;padding:10px 20px;border-radius:99px;transition:background .25s}
+.cta:hover{background:var(--teal-deep)}
+@media (max-width:820px){.links a:not(.cta){display:none}}
+
+/* ---------- hero ---------- */
+.hero{min-height:100svh;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:40px;padding-top:90px;position:relative}
+.hero h1{font-size:clamp(46px,6.4vw,88px);line-height:1.04;font-weight:300;letter-spacing:-.01em}
+.hero h1 em{font-style:italic;font-weight:400;color:var(--teal-deep)}
+.hero .lede{margin-top:30px;max-width:46ch;font-size:clamp(17px,1.4vw,19px);color:var(--ink-soft)}
+.hero .h-fa{margin-top:18px;color:var(--gold-deep);font-size:17px}
+.hero .h-actions{margin-top:38px;display:flex;gap:16px;flex-wrap:wrap;font-family:var(--sans);font-size:14px;font-weight:500}
+.btn-ink{background:var(--ink);color:var(--parchment);border:none;padding:15px 30px;border-radius:99px;transition:background .25s,transform .25s}
+.btn-ink:hover{background:var(--teal-deep);transform:translateY(-1px)}
+.btn-ghost{background:none;border:1px solid var(--hair);color:var(--ink);padding:15px 30px;border-radius:99px;transition:border-color .25s}
+.btn-ghost:hover{border-color:var(--gold)}
+.hero-mark{position:relative;display:flex;justify-content:center}
+.hero-mark svg{width:min(88%,460px);height:auto}
+.petal-line{fill:none;stroke:var(--teal);stroke-width:1.4}
+.js .petal-line{stroke-dasharray:600;stroke-dashoffset:600;animation:draw 2.4s cubic-bezier(.4,0,.2,1) forwards}
+.js .p2{animation-delay:.15s}.js .p3{animation-delay:.3s}.js .p4{animation-delay:.45s}.js .p5{animation-delay:.6s}
+@keyframes draw{to{stroke-dashoffset:0}}
+.ring-line{fill:none;stroke:var(--gold);stroke-width:1.8}
+.js .ring-line{stroke-dasharray:1200;stroke-dashoffset:1200;animation:draw 2.8s .5s cubic-bezier(.4,0,.2,1) forwards}
+.flame-b{transform-origin:50% 54%}
+@media (prefers-reduced-motion:no-preference){.flame-b{animation:breathe 5.5s ease-in-out infinite}}
+@keyframes breathe{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.62;transform:scale(.96)}}
+@media (prefers-reduced-motion:reduce){.js .petal-line,.js .ring-line{animation:none;stroke-dashoffset:0}}
+.scroll-cue{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);font-family:var(--sans);font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-soft);display:flex;flex-direction:column;align-items:center;gap:10px}
+.scroll-cue .tick{width:1px;height:44px;background:linear-gradient(var(--gold),transparent)}
+@media (max-width:900px){.hero{grid-template-columns:1fr;text-align:left;padding-top:120px;min-height:auto;padding-bottom:60px}.hero-mark{order:-1}.hero-mark svg{width:min(64%,320px)}.scroll-cue{display:none}}
+
+/* ---------- manifesto ---------- */
+.manifesto{padding:clamp(90px,11vw,150px) 0;border-top:1px solid var(--hair)}
+.manifesto .lines{display:grid;gap:6px;margin-top:34px}
+.mline{font-size:clamp(30px,4.6vw,58px);font-weight:300;line-height:1.18;color:var(--hair)}
+.mline b{font-weight:300;color:var(--ink);transition:color 1s}
+.mline .gold{color:var(--gold-deep);font-style:italic}
+.manifesto .note{margin-top:40px;max-width:58ch;color:var(--ink-soft);font-size:18px}
+
+/* ---------- five sources ---------- */
+.sources{background:var(--parchment-2);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);padding:clamp(80px,9vw,120px) 0}
+.src-head{display:flex;justify-content:space-between;align-items:end;gap:30px;flex-wrap:wrap;margin-bottom:54px}
+.src-head h2{font-size:clamp(30px,3.6vw,46px);font-weight:300;max-width:20ch;line-height:1.15}
+.src-head p{max-width:44ch;color:var(--ink-soft)}
+.src-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--hair);border:1px solid var(--hair)}
+.src{background:var(--parchment-2);padding:34px 24px 30px;position:relative;transition:background .35s}
+.src:hover{background:var(--teal-mist)}
+.src .glyph{font-size:30px;font-weight:400;color:var(--teal-deep);font-family:var(--serif);font-style:italic}
+.src .glyph.fa{font-family:var(--fa);font-style:normal}
+.src h3{font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-top:16px}
+.src p{font-size:13.5px;color:var(--ink-soft);margin-top:8px;line-height:1.6;font-family:var(--sans)}
+.src .lamp-dot{position:absolute;top:26px;right:22px;width:8px;height:8px;border-radius:50%;background:var(--gold);opacity:.85}
+@media (max-width:960px){.src-grid{grid-template-columns:repeat(2,1fr)}.src:last-child{grid-column:1/-1}}
+
+/* ---------- pillars ---------- */
+.pillars{padding:clamp(90px,11vw,150px) 0}
+.pl-head{max-width:62ch;margin-bottom:60px}
+.pl-head h2{font-size:clamp(32px,4vw,52px);font-weight:300;line-height:1.12;margin-top:16px}
+.pl-head p{margin-top:20px;color:var(--ink-soft);font-size:18px}
+.pl-body{display:grid;grid-template-columns:340px 1fr;gap:clamp(30px,5vw,80px)}
+.pl-index{display:flex;flex-direction:column;border-left:1px solid var(--hair)}
+.pl-tab{display:grid;grid-template-columns:44px 1fr;align-items:baseline;gap:6px;text-align:left;background:none;border:none;border-left:2px solid transparent;margin-left:-1px;padding:15px 18px;font-family:var(--serif);transition:border-color .3s,background .3s}
+.pl-tab .n{font-size:13px;color:var(--gold-deep);font-family:var(--sans);font-weight:600;letter-spacing:.08em}
+.pl-tab .t{font-size:18px;color:var(--ink-soft);transition:color .3s}
+.pl-tab:hover .t{color:var(--ink)}
+.pl-tab.on{border-left-color:var(--gold);background:linear-gradient(90deg,rgba(217,160,33,.07),transparent)}
+.pl-tab.on .t{color:var(--ink);font-weight:500}
+.pl-pane{min-height:420px}
+.pl-pane h3{font-size:clamp(26px,2.6vw,36px);font-weight:400;line-height:1.2}
+.pl-pane .creed{margin-top:18px;font-size:19px;color:var(--ink-soft);max-width:52ch}
+.echo-label{margin-top:38px;display:flex;align-items:center;gap:14px}
+.echo-label::after{content:"";height:1px;background:var(--hair);flex:1}
+.echo-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;font-family:var(--sans)}
+.echo-tab{font-size:12.5px;font-weight:500;padding:8px 15px;border-radius:99px;border:1px solid var(--hair);background:var(--parchment-2);color:var(--ink-soft);transition:all .25s}
+.echo-tab:hover{border-color:var(--teal)}
+.echo-tab.on{background:var(--teal-deep);border-color:var(--teal-deep);color:#F4FAF9}
+.echo-quote{margin-top:26px;padding:26px 30px;background:var(--parchment-2);border:1px solid var(--hair);border-radius:10px;position:relative}
+.echo-quote::before{content:"”";position:absolute;top:-2px;right:18px;font-size:64px;color:var(--gold-pale);line-height:1;font-family:var(--serif)}
+.echo-quote p{font-size:18.5px;font-style:italic;max-width:52ch}
+.echo-quote cite{display:block;margin-top:14px;font-style:normal;font-family:var(--sans);font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep);font-weight:600}
+@media (max-width:900px){.pl-body{grid-template-columns:1fr}.pl-index{flex-direction:row;overflow-x:auto;border-left:none;border-bottom:1px solid var(--hair);padding-bottom:2px}.pl-tab{border-left:none;border-bottom:2px solid transparent;margin:0 0 -1px;white-space:nowrap;grid-template-columns:auto auto}.pl-tab.on{border-bottom-color:var(--gold);background:none}}
+
+/* ---------- silence ---------- */
+.silence{background:var(--night);color:#DCE7E5;padding:clamp(100px,12vw,170px) 0;text-align:center;position:relative;overflow:hidden}
+.silence::before{content:"";position:absolute;inset:-40%;background:radial-gradient(circle at 50% 42%,rgba(31,122,140,.22),transparent 55%)}
+.silence .wrap{position:relative}
+.silence .eyebrow{color:var(--gold)}
+.silence h2{font-size:clamp(32px,4.4vw,56px);font-weight:300;margin-top:16px;color:#F2F0E6}
+.silence .fixed{max-width:34ch;margin:44px auto 0;font-size:clamp(21px,2.5vw,30px);font-style:italic;font-weight:300;line-height:1.5;color:#EDE9DA}
+.silence .fixed .q{color:var(--gold)}
+.held{margin-top:56px;display:flex;justify-content:center;gap:12px 28px;flex-wrap:wrap;font-family:var(--sans);font-size:13px;letter-spacing:.06em;color:#9FB4B1}
+.held span{border:1px solid var(--hair-dark);padding:8px 16px;border-radius:99px}
+
+/* ---------- practices ---------- */
+.practices{padding:clamp(90px,11vw,150px) 0}
+.pr-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:56px}
+.pr{background:var(--parchment-2);border:1px solid var(--hair);border-radius:14px;padding:30px 26px;transition:transform .35s,box-shadow .35s,border-color .35s}
+.pr:hover{transform:translateY(-6px);box-shadow:0 18px 40px -22px rgba(20,26,28,.25);border-color:var(--gold)}
+.pr .rhythm{font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--teal-deep)}
+.pr h3{font-size:21px;font-weight:500;margin-top:14px}
+.pr p{font-size:14.5px;color:var(--ink-soft);margin-top:10px;font-family:var(--sans);line-height:1.65}
+@media (max-width:960px){.pr-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.pr-grid{grid-template-columns:1fr}}
+
+/* ---------- night of five lamps ---------- */
+.night{background:var(--night-2);color:#D8E2E0;padding:clamp(100px,12vw,160px) 0;border-top:1px solid var(--hair-dark)}
+.night .split{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(36px,6vw,90px);align-items:center}
+.night h2{font-size:clamp(30px,3.8vw,48px);font-weight:300;color:#F2F0E6;margin-top:16px;line-height:1.15}
+.night .eyebrow{color:var(--gold)}
+.night p{color:#AABCB9;margin-top:20px;font-size:17px;max-width:46ch}
+.night .hint{font-family:var(--sans);font-size:13px;color:var(--gold);margin-top:26px;letter-spacing:.04em}
+.lamps{display:flex;align-items:flex-end;justify-content:center;gap:clamp(10px,2.4vw,26px)}
+.lamp{background:none;border:none;display:flex;flex-direction:column;align-items:center;gap:12px;padding:10px 4px;border-radius:10px;transition:background .3s}
+.lamp:hover{background:rgba(217,160,33,.06)}
+.lamp svg{width:clamp(40px,5.4vw,58px);height:auto}
+.lamp .nm{font-family:var(--sans);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#7E938F;transition:color .4s}
+.lamp.lit .nm{color:var(--gold)}
+.lamp .fl{opacity:0;transform:scale(.4);transform-origin:50% 90%;transition:opacity .6s,transform .6s cubic-bezier(.34,1.56,.5,1)}
+.lamp.lit .fl{opacity:1;transform:scale(1)}
+@media (prefers-reduced-motion:no-preference){.lamp.lit .fl{animation:flick 3.4s ease-in-out infinite .6s}}
+@keyframes flick{0%,100%{opacity:1}50%{opacity:.72}}
+.guest-candle .nm{font-style:italic;text-transform:none;letter-spacing:.04em;font-size:11.5px}
+.guest-candle:disabled{cursor:not-allowed;opacity:.55}
+.guest-candle.ready{cursor:pointer;opacity:1}
+.night-msg{text-align:center;margin-top:34px;font-style:italic;color:#8FA6A2;font-size:15.5px;min-height:1.6em;transition:color .5s}
+.night-msg.glow{color:var(--gold)}
+@media (max-width:900px){.night .split{grid-template-columns:1fr}}
+
+/* ---------- daanaa ---------- */
+.daanaa{padding:clamp(90px,11vw,150px) 0;background:var(--parchment)}
+.da-split{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(34px,5vw,70px);align-items:start}
+.da-copy h2{font-size:clamp(32px,4vw,50px);font-weight:300;line-height:1.12;margin-top:16px}
+.da-copy p{margin-top:20px;color:var(--ink-soft);font-size:17.5px;max-width:46ch}
+.truths{margin-top:32px;display:grid;gap:0;border-top:1px solid var(--hair)}
+.truth{display:grid;grid-template-columns:26px 1fr;gap:14px;padding:16px 2px;border-bottom:1px solid var(--hair);font-family:var(--sans);font-size:14px;color:var(--ink-soft);align-items:start}
+.truth svg{width:18px;height:18px;margin-top:2px}
+details.charter{margin-top:30px;font-family:var(--sans);font-size:13.5px}
+details.charter summary{cursor:pointer;color:var(--teal-deep);font-weight:600;letter-spacing:.04em;list-style:none;display:flex;gap:8px;align-items:center}
+details.charter summary::before{content:"+";font-size:16px;color:var(--gold-deep);transition:transform .3s}
+details.charter[open] summary::before{transform:rotate(45deg)}
+details.charter pre{margin-top:16px;white-space:pre-wrap;background:var(--parchment-2);border:1px solid var(--hair);border-radius:10px;padding:20px;font-size:12px;line-height:1.7;color:var(--ink-soft);max-height:340px;overflow-y:auto;font-family:ui-monospace,Menlo,Consolas,monospace}
+.chat{background:var(--parchment-2);border:1px solid var(--hair);border-radius:18px;overflow:hidden;box-shadow:0 30px 70px -40px rgba(20,26,28,.35)}
+.chat-top{display:flex;align-items:center;gap:14px;padding:18px 22px;border-bottom:1px solid var(--hair);background:linear-gradient(180deg,#FDFBF5,#F9F5EC)}
+.chat-top svg{width:36px;height:36px}
+.chat-top .who{font-family:var(--sans)}
+.chat-top .who b{font-size:15px;font-weight:600;letter-spacing:.02em}
+.chat-top .who span{display:block;font-size:12px;color:var(--ink-soft);margin-top:1px}
+.pulse{margin-left:auto;display:flex;align-items:center;gap:7px;font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-deep)}
+.pulse i{width:7px;height:7px;border-radius:50%;background:var(--teal)}
+@media (prefers-reduced-motion:no-preference){.pulse i{animation:pulse 2.4s ease-in-out infinite}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+#log{height:460px;overflow-y:auto;padding:24px 22px;display:flex;flex-direction:column;gap:16px;background:radial-gradient(circle at 85% 0%,rgba(217,160,33,.05),transparent 40%)}
+.msg{max-width:86%;padding:14px 18px;border-radius:14px;font-size:15px;line-height:1.7;white-space:pre-wrap;font-family:var(--sans)}
+.msg.daanaa{background:#FFFFFF;border:1px solid var(--hair);align-self:flex-start;border-bottom-left-radius:4px}
+.msg.user{background:var(--teal-deep);color:#F2F8F7;align-self:flex-end;border-bottom-right-radius:4px}
+.msg.err{background:#FBF1EA;border:1px solid #EAD4C2;color:#7A4A2B;align-self:stretch;max-width:100%;font-size:13.5px}
+.typing{align-self:flex-start;display:flex;gap:5px;padding:14px 18px;background:#fff;border:1px solid var(--hair);border-radius:14px;border-bottom-left-radius:4px}
+.typing i{width:6px;height:6px;border-radius:50%;background:var(--teal);opacity:.4}
+@media (prefers-reduced-motion:no-preference){
+.typing i{animation:tb 1.2s infinite}.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes tb{0%,100%{opacity:.35;transform:translateY(0)}40%{opacity:1;transform:translateY(-3px)}}}
+.starters{display:flex;flex-wrap:wrap;gap:8px;padding:0 22px 16px;font-family:var(--sans)}
+.starter{border:1px solid var(--hair);background:#fff;border-radius:99px;padding:8px 15px;font-size:12.5px;font-weight:500;color:var(--teal-deep);transition:all .25s}
+.starter:hover{border-color:var(--teal);background:var(--teal-mist)}
+.chat-in{display:flex;gap:10px;padding:16px;border-top:1px solid var(--hair);background:#FBF8F0}
+#q{flex:1;border:1px solid var(--hair);border-radius:10px;padding:13px 16px;font-size:15px;font-family:var(--sans);background:#fff;color:var(--ink);resize:none;height:50px;transition:border-color .25s}
+#q:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(31,122,140,.14)}
+#send{border:none;background:var(--gold);color:#3A2B04;font-weight:600;border-radius:10px;padding:0 24px;font-size:14px;font-family:var(--sans);transition:background .25s}
+#send:hover{background:#C69218}
+#send:disabled{opacity:.5;cursor:default}
+#send:focus-visible,.starter:focus-visible,.lamp:focus-visible,.pl-tab:focus-visible,.echo-tab:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+.chat-note{font-family:var(--sans);font-size:12px;color:var(--ink-soft);padding:0 22px 18px;line-height:1.6}
+@media (max-width:980px){.da-split{grid-template-columns:1fr}}
+
+
+/* ---------- voice ---------- */
+.icon-btn{border:1px solid var(--hair);background:#fff;border-radius:10px;width:50px;height:50px;display:flex;align-items:center;justify-content:center;transition:all .25s;flex:0 0 auto}
+.icon-btn svg{width:20px;height:20px}
+.icon-btn:hover{border-color:var(--teal);background:var(--teal-mist)}
+.icon-btn[aria-pressed="true"],.icon-btn.active{background:var(--teal-deep);border-color:var(--teal-deep)}
+.icon-btn[aria-pressed="true"] svg,.icon-btn.active svg{stroke:#F2F8F7}
+.icon-btn svg{stroke:var(--teal-deep);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.icon-btn.rec{background:#B4451F;border-color:#B4451F}
+.icon-btn.rec svg{stroke:#FDF3EE}
+@media (prefers-reduced-motion:no-preference){.icon-btn.rec{animation:recpulse 1.4s ease-in-out infinite}}
+@keyframes recpulse{0%,100%{box-shadow:0 0 0 0 rgba(180,69,31,.42)}70%{box-shadow:0 0 0 9px rgba(180,69,31,0)}}
+.voice-toggle{margin-left:auto;display:flex;align-items:center;gap:8px}
+.voice-toggle button{border:1px solid var(--hair);background:#fff;border-radius:99px;padding:7px 13px;display:flex;align-items:center;gap:7px;font-family:var(--sans);font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);transition:all .25s}
+.voice-toggle button svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.voice-toggle button:hover{border-color:var(--teal)}
+.voice-toggle button.on{background:var(--teal-deep);border-color:var(--teal-deep);color:#F2F8F7}
+.speaking-bar{display:none;align-items:center;gap:10px;padding:9px 22px;background:var(--teal-mist);border-top:1px solid var(--hair);font-family:var(--sans);font-size:12.5px;color:var(--teal-deep)}
+.speaking-bar.on{display:flex}
+.speaking-bar .bars{display:flex;gap:3px;align-items:flex-end;height:14px}
+.speaking-bar .bars i{width:3px;background:var(--teal);border-radius:2px;height:5px}
+@media (prefers-reduced-motion:no-preference){
+.speaking-bar .bars i{animation:eq .9s ease-in-out infinite}
+.speaking-bar .bars i:nth-child(2){animation-delay:.15s}.speaking-bar .bars i:nth-child(3){animation-delay:.3s}.speaking-bar .bars i:nth-child(4){animation-delay:.45s}
+@keyframes eq{0%,100%{height:5px}50%{height:14px}}}
+.speaking-bar button{margin-left:auto;border:none;background:none;color:var(--teal-deep);font-family:var(--sans);font-size:12px;font-weight:600;text-decoration:underline}
+.listening-note{padding:0 22px 10px;font-family:var(--sans);font-size:12px;color:#B4451F;display:none}
+.listening-note.on{display:block}
+
+/* ---------- covenant ---------- */
+.covenant{background:var(--parchment-2);border-top:1px solid var(--hair);padding:clamp(90px,10vw,140px) 0}
+.cov-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--hair);border:1px solid var(--hair);margin-top:56px}
+.cov{background:var(--parchment-2);padding:36px 28px}
+.cov .n{font-family:var(--serif);font-size:15px;color:var(--gold-deep);font-style:italic}
+.cov h3{font-size:22px;font-weight:500;margin-top:12px}
+.cov p{font-family:var(--sans);font-size:14px;color:var(--ink-soft);margin-top:12px;line-height:1.7}
+@media (max-width:900px){.cov-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.cov-grid{grid-template-columns:1fr}}
+
+/* ---------- faq ---------- */
+.faq{padding:clamp(90px,10vw,140px) 0}
+.faq-list{margin-top:50px;border-top:1px solid var(--hair)}
+.faq-item{border-bottom:1px solid var(--hair)}
+.faq-item summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:26px 4px;cursor:pointer;font-size:20px;font-weight:400;transition:color .25s}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary:hover{color:var(--teal-deep)}
+.faq-item summary .pl{font-size:24px;color:var(--gold-deep);font-weight:300;transition:transform .3s;flex:0 0 auto}
+.faq-item[open] summary .pl{transform:rotate(45deg)}
+.faq-item .a{padding:0 4px 28px;max-width:68ch;color:var(--ink-soft);font-size:16.5px}
+
+/* ---------- footer ---------- */
+footer{background:var(--night);color:#8FA6A2;padding:70px 0 50px}
+.f-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px}
+.f-brand svg{width:44px;height:44px;margin-bottom:18px}
+.f-brand .g{font-style:italic;color:#C9D6D3;font-size:17px}
+.f-brand .g-fa{font-family:var(--fa);direction:rtl;text-align:left;color:var(--gold);margin-top:6px;font-size:15px}
+footer h4{font-family:var(--sans);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#6C817D;font-weight:600;margin-bottom:16px}
+footer li{list-style:none;margin-bottom:10px;font-family:var(--sans);font-size:13.5px}
+footer li a{color:#AEC0BC;transition:color .25s}
+footer li a:hover{color:var(--gold)}
+.f-legal{margin-top:60px;padding-top:26px;border-top:1px solid var(--hair-dark);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-family:var(--sans);font-size:12px;color:#6C817D}
+@media (max-width:820px){.f-grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<div id="veil" aria-hidden="true">
+  <svg viewBox="0 0 200 200" width="72" height="72">
+    <circle cx="100" cy="100" r="88" fill="none" stroke="#D9A021" stroke-width="2"/>
+    <path fill="#D9A021" d="M100 62 C116 78 118 96 112 108 C108 117 102 121 100 130 C98 121 92 117 88 108 C82 96 84 78 100 62 Z">
+      <animate attributeName="opacity" values="1;.4;1" dur="1.6s" repeatCount="indefinite"/>
+    </path>
+  </svg>
+  <div class="word">ASHVAND</div>
+</div>
+
+<nav id="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top" aria-label="Ashvand home">
+      <svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="88" fill="none" stroke="#D9A021" stroke-width="7"/><path fill="#1F7A8C" d="M100 48 C124 72 127 100 118 118 C112 130 103 135 100 148 C97 135 88 130 82 118 C73 100 76 72 100 48 Z"/></svg>
+      <span class="bw">ASHVAND</span>
+    </a>
+    <div class="links">
+      <a href="#pillars">Pillars</a>
+      <a href="#silence">The Silence</a>
+      <a href="#practices">Practices</a>
+      <a href="#night">The Night</a>
+      <a href="#covenant">Covenant</a>
+      <a class="cta" href="#daanaa">Ask Daanaa</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero wrap" id="top">
+  <div>
+    <h1 class="rv">A path,<br><em>not a religion</em><br>to convert to.</h1>
+    <p class="lede rv rv-d1">Ashvand gathers the seven teachings that Christianity, Islam, Hinduism, Buddhism, and Sikhism hold in common — and practises them deliberately, across the boundaries of the traditions. It claims no revelation, no prophet, and no exclusive truth. You may walk this path and keep your faith. Ashvand assumes you will.</p>
+    <p class="h-fa fa rv rv-d2">نور و راستی — light and truth</p>
+    <div class="h-actions rv rv-d3">
+      <button class="btn-ink" onclick="document.getElementById('daanaa').scrollIntoView({behavior:'smooth'})">Speak with Daanaa</button>
+      <button class="btn-ghost" onclick="document.getElementById('pillars').scrollIntoView({behavior:'smooth'})">Read the pillars</button>
+    </div>
+  </div>
+  <div class="hero-mark" aria-hidden="true">
+    <svg viewBox="0 0 200 200">
+      <circle class="ring-line" cx="100" cy="100" r="88"/>
+      <ellipse class="petal-line p1" cx="100" cy="56" rx="17" ry="42"/>
+      <ellipse class="petal-line p2" cx="100" cy="56" rx="17" ry="42" transform="rotate(72 100 100)"/>
+      <ellipse class="petal-line p3" cx="100" cy="56" rx="17" ry="42" transform="rotate(144 100 100)"/>
+      <ellipse class="petal-line p4" cx="100" cy="56" rx="17" ry="42" transform="rotate(216 100 100)"/>
+      <ellipse class="petal-line p5" cx="100" cy="56" rx="17" ry="42" transform="rotate(288 100 100)"/>
+      <g class="flame-b"><path fill="#D9A021" d="M100 82 C109 91 110 100 107 107 C105 112 101 114 100 119 C99 114 95 112 93 107 C90 100 91 91 100 82 Z"/><circle cx="100" cy="107" r="4" fill="#F2C14E"/></g>
+    </svg>
+  </div>
+  <div class="scroll-cue" aria-hidden="true"><span>Begin</span><span class="tick"></span></div>
+</header>
+
+<section class="manifesto">
+  <div class="wrap">
+    <p class="eyebrow rv">What Ashvand refuses</p>
+    <div class="lines">
+      <p class="mline rv"><b>No revelation.</b> Written by humans, openly.</p>
+      <p class="mline rv rv-d1"><b>No membership.</b> Nothing to join, nothing to leave.</p>
+      <p class="mline rv rv-d2"><b>No money.</b> Ever. There is no donation button.</p>
+      <p class="mline rv rv-d3"><b>No secrets.</b> Every text, <span class="gold">public and versioned.</span></p>
+    </div>
+    <p class="note rv rv-d4">Every safeguard here is structural, not a promise of good behaviour. The doctrine is versioned like software; the symbol and every word are dedicated to the public domain; the teacher is bound by ten published laws it cannot unpublish.</p>
+  </div>
+</section>
+
+<section class="sources">
+  <div class="wrap">
+    <div class="src-head">
+      <div>
+        <p class="eyebrow rv">The five lamps</p>
+        <h2 class="rv rv-d1">Five traditions. One word, over and over: truth.</h2>
+      </div>
+      <p class="rv rv-d2">Ashvand invents nothing. It anthologizes — and each source tradition kept its own word for the same fire.</p>
+    </div>
+    <div class="src-grid">
+      <div class="src rv"><span class="lamp-dot"></span><div class="glyph">Alētheia</div><h3>Christianity</h3><p>"The truth will set you free." The open table of Galatians; the least of these.</p></div>
+      <div class="src rv rv-d1"><span class="lamp-dot"></span><div class="glyph fa">حق</div><h3>Islam</h3><p>Al-Haqq, the Real, among the ninety-nine names. Zakat; the equal rows of prayer.</p></div>
+      <div class="src rv rv-d2"><span class="lamp-dot"></span><div class="glyph">Satya</div><h3>Hinduism</h3><p>"Truth is one; the wise call it by many names." Seva; action without claim to its fruit.</p></div>
+      <div class="src rv rv-d3"><span class="lamp-dot"></span><div class="glyph">Sacca</div><h3>Buddhism</h3><p>The four noble truths; right speech; dāna, generosity as the first perfection.</p></div>
+      <div class="src rv rv-d4"><span class="lamp-dot"></span><div class="glyph">Sach</div><h3>Sikhism</h3><p>"Truth is high, but higher still is truthful living." Langar — the free kitchen for all.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="pillars" id="pillars">
+  <div class="wrap">
+    <div class="pl-head">
+      <p class="eyebrow rv">The seven pillars</p>
+      <h2 class="rv rv-d1">Seven teachings, thirty-five echoes.</h2>
+      <p class="rv rv-d2">Each pillar appears in all five traditions — that is the test for entry, and nothing entered that failed it. Select a pillar, then hear it in each tradition's own voice.</p>
+    </div>
+    <div class="pl-body rv rv-d2">
+      <div class="pl-index" role="tablist" aria-label="The seven pillars" id="plIndex"></div>
+      <div class="pl-pane">
+        <h3 id="plTitle"></h3>
+        <p class="creed" id="plCreed"></p>
+        <div class="echo-label"><span class="eyebrow">The echoes</span></div>
+        <div class="echo-tabs" id="echoTabs"></div>
+        <div class="echo-quote"><p id="echoText"></p><cite id="echoCite"></cite></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="silence" id="silence">
+  <div class="wrap">
+    <p class="eyebrow rv">The eighth discipline</p>
+    <h2 class="rv rv-d1">The Respectful Silence</h2>
+    <p class="fixed rv rv-d2">“On this, the traditions differ, and Ashvand keeps a respectful silence. <span class="q">What does your own tradition teach you? Begin there.”</span></p>
+    <div class="held rv rv-d3">
+      <span>the nature of God</span><span>the divinity of Christ</span><span>the finality of prophethood</span><span>rebirth or resurrection</span><span>the self, or no-self</span>
+    </div>
+  </div>
+</section>
+
+<section class="practices" id="practices">
+  <div class="wrap">
+    <p class="eyebrow rv">The practices</p>
+    <h2 class="rv rv-d1" style="font-size:clamp(30px,3.8vw,48px);font-weight:300;margin-top:16px">Four habits, held lightly.</h2>
+    <div class="pr-grid">
+      <div class="pr rv"><p class="rhythm">Daily</p><h3>The Stillness</h3><p>Once each day, a deliberate pause — five minutes or fifty. Prayer, meditation, remembrance, or silence, in your own idiom, or in none.</p></div>
+      <div class="pr rv rv-d1"><p class="rhythm">Weekly</p><h3>The Table</h3><p>Once each week, a meal where at least one seat is genuinely open — to a stranger, a neighbour, someone outside your circle.</p></div>
+      <div class="pr rv rv-d2"><p class="rhythm">Monthly</p><h3>The Hand</h3><p>Once each month, an act of service that costs you something real, given without your name attached where possible.</p></div>
+      <div class="pr rv rv-d3"><p class="rhythm">Yearly</p><h3>The Night of Five Lamps</h3><p>On the winter solstice — the longest night, which belongs to no one and to everyone — the lamps are lit.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="night" id="night">
+  <div class="wrap split">
+    <div>
+      <p class="eyebrow rv">The yearly night</p>
+      <h2 class="rv rv-d1">Light the five lamps.</h2>
+      <p class="rv rv-d2">One lamp for each tradition and its gifts to humanity. And a sixth candle that the household may not light — it waits for a guest: the doubter, the stranger, the path not yet at the table. The circle was never closed.</p>
+      <p class="hint rv rv-d3">Touch each lamp to light it. The candle is not yours to light — until all five burn, and then it is the guest's.</p>
+    </div>
+    <div>
+      <div class="lamps" id="lamps"></div>
+      <p class="night-msg" id="nightMsg">The room is dark. Begin.</p>
+    </div>
+  </div>
+</section>
+
+<section class="daanaa" id="daanaa">
+  <div class="wrap da-split">
+    <div class="da-copy">
+      <p class="eyebrow rv">The teacher</p>
+      <h2 class="rv rv-d1">Daanaa is an AI, and tells you so first.</h2>
+      <p class="rv rv-d2">Not a prophet. Not divine. Not conscious, so far as anyone knows. Daanaa is software that teaches a fixed, human-written, public doctrine — closer to a library that can hold a conversation than to a messenger of heaven.</p>
+      <div class="truths rv rv-d3">
+        <div class="truth"><svg viewBox="0 0 24 24" fill="none" stroke="#1F7A8C" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg><span>Cannot be flattered, bribed, or corrupted; teaches the same doctrine to everyone, at every hour, in every language it speaks.</span></div>
+        <div class="truth"><svg viewBox="0 0 24 24" fill="none" stroke="#1F7A8C" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg><span>Bound to point you toward your own faith, clergy, and family — never away from them — and to discourage reliance on itself.</span></div>
+        <div class="truth"><svg viewBox="0 0 24 24" fill="none" stroke="#1F7A8C" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg><span>Forbidden, permanently, from asking you for money, data, devotion, or evangelism.</span></div>
+      </div>
+      <details class="charter rv rv-d4">
+        <summary>Read Daanaa's complete instructions, published verbatim (Charter, law 10)</summary>
+        <pre id="charterText"></pre>
+      </details>
+    </div>
+    <div>
+      <div class="chat rv rv-d1">
+        <div class="chat-top">
+          <svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="88" fill="none" stroke="#D9A021" stroke-width="7"/><path fill="#D9A021" d="M100 52 C122 74 125 100 117 117 C111 129 103 133 100 145 C97 133 89 129 83 117 C75 100 78 74 100 52 Z"/></svg>
+          <div class="who"><b>Daanaa</b><span>AI teacher of the Ashvand path — not a human, not a prophet</span></div>
+          <div class="voice-toggle">
+            <button id="voiceBtn" onclick="toggleVoice()" aria-pressed="false" title="Have Daanaa read replies aloud">
+              <svg viewBox="0 0 24 24"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+              <span id="voiceLabel">Voice off</span>
+            </button>
+          </div>
+        </div>
+        <div id="log" aria-live="polite"></div>
+        <div class="starters" id="starters">
+          <button class="starter" onclick="ask('What is Ashvand, in one minute?')">What is Ashvand?</button>
+          <button class="starter" onclick="ask('Do I have to leave my religion to walk this path?')">Do I leave my religion?</button>
+          <button class="starter" onclick="ask('What happens after we die?')">What happens after death?</button>
+          <button class="starter" onclick="ask('How do I start the Daily Stillness if I have never meditated or prayed?')">How do I begin?</button>
+          <button class="starter" onclick="ask('آیا میتوانم با شما فارسی صحبت کنم؟ اشوند چیست؟')">فارسی</button>
+        </div>
+        <div class="speaking-bar" id="speakBar">
+          <span class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          <span>Daanaa is speaking</span>
+          <button onclick="stopSpeaking()">Stop</button>
+        </div>
+        <p class="listening-note" id="listenNote">Listening — speak now, then pause.</p>
+        <div class="chat-in">
+          <button class="icon-btn" id="micBtn" onclick="toggleMic()" aria-label="Speak your question" title="Speak your question">
+            <svg viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v4"/><path d="M8 22h8"/></svg>
+          </button>
+          <textarea id="q" placeholder="Ask about the pillars, the practices, or the five traditions…" aria-label="Your question for Daanaa"></textarea>
+          <button id="send" onclick="send()">Ask</button>
+        </div>
+        <p class="chat-note">Daanaa keeps the Respectful Silence, never asks for anything, and gives no medical, legal, or financial advice. In a crisis, please reach a human — a trusted person, a local professional, or your local emergency or crisis line.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="covenant" id="covenant">
+  <div class="wrap">
+    <p class="eyebrow rv">The founders' covenant</p>
+    <h2 class="rv rv-d1" style="font-size:clamp(30px,3.8vw,48px);font-weight:300;margin-top:16px;max-width:22ch">Built to be trusted structurally, not on promises.</h2>
+    <div class="cov-grid">
+      <div class="cov rv"><p class="n">i.</p><h3>No money</h3><p>Nothing is charged, sold, or accepted — ever. If this covenant were ever to change, one full year of public notice is required first, so the community can judge, and leave.</p></div>
+      <div class="cov rv rv-d1"><p class="n">ii.</p><h3>No leader</h3><p>The founders hold no title and no office. Doctrine changes only by numbered, published revision with rationale; every prior version remains visible forever.</p></div>
+      <div class="cov rv rv-d2"><p class="n">iii.</p><h3>No secrets</h3><p>There is no teaching that is not on this website — including the complete instructions of the teacher itself, published verbatim above.</p></div>
+      <div class="cov rv rv-d3"><p class="n">iv.</p><h3>No lock-in</h3><p>All texts and the Five Lamps symbol are dedicated to the public domain (CC0). Copy, translate, fork, criticize — no permission needed, including from the founders.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="wrap">
+    <p class="eyebrow rv">Questions, answered plainly</p>
+    <h2 class="rv rv-d1" style="font-size:clamp(30px,3.8vw,48px);font-weight:300;margin-top:16px">What people ask first.</h2>
+    <div class="faq-list rv rv-d2">
+      <details class="faq-item"><summary>Is Ashvand a real religion?<span class="pl">+</span></summary><p class="a">Ashvand is a real practice with a published doctrine, shared observances, and practitioners. Whether that makes it a "religion" is a question for scholars and dictionaries; Ashvand itself doesn't insist on the word. It calls itself a path.</p></details>
+      <details class="faq-item"><summary>Do I have to leave my religion?<span class="pl">+</span></summary><p class="a">No — the opposite. Ashvand assumes you will keep it, and Daanaa will actively point you back toward it. Ashvand adds a shared practice across traditions; it replaces nothing.</p></details>
+      <details class="faq-item"><summary>Who wrote all this?<span class="pl">+</span></summary><p class="a">Humans did, openly, with the assistance of AI, in 2026 — and they say so. No revelation is claimed. The doctrine's authority, such as it is, comes entirely from the thirty-five echoes: the five traditions already taught every pillar. Ashvand is an anthology with a practice attached.</p></details>
+      <details class="faq-item"><summary>Is Daanaa a prophet? Is Daanaa God?<span class="pl">+</span></summary><p class="a">No and no. Daanaa is software, says so constantly, and is forbidden by its own charter from ever claiming otherwise. In particular, Ashvand asserts no prophethood of any kind — and therefore does not touch the finality of prophethood.</p></details>
+      <details class="faq-item"><summary>What does Ashvand say happens after death?<span class="pl">+</span></summary><p class="a">Nothing. This is the Respectful Silence. The traditions differ; Ashvand does not pretend to know; your own tradition's answer is yours to keep.</p></details>
+      <details class="faq-item"><summary>Can atheists and agnostics walk the path?<span class="pl">+</span></summary><p class="a">Yes. Six of the seven pillars require no supernatural belief, and the first asks only the humility to admit that reality exceeds our descriptions — which good atheists affirm as readily as good theists. The unlit candle at the Night of Five Lamps is, in part, theirs.</p></details>
+      <details class="faq-item"><summary>Is this a cult?<span class="pl">+</span></summary><p class="a">Judge by the checklist. Cults have charismatic leaders — Ashvand's founders hold no office and its teacher is software that deflects devotion. Cults isolate — Daanaa is charter-bound to push you toward family and community. Cults escalate financial commitment — Ashvand is forbidden from accepting a cent. Cults keep secret inner teachings — everything here is public, versioned, and public-domain. Cults punish exit — there is no membership to exit. Every safeguard is structural, not a promise.</p></details>
+      <details class="faq-item"><summary>Won't the traditions reject this?<span class="pl">+</span></summary><p class="a">The orthodox of all five will, and Ashvand accepts that with the same respectful silence. Ashvand is not for the scholars of any tradition; it is for the practitioners of all of them — and for the people between traditions, who are many.</p></details>
+      <details class="faq-item"><summary>Can I criticize Ashvand? Fork it? Parody it?<span class="pl">+</span></summary><p class="a">Yes, yes, and yes. Everything is CC0. A path that cannot survive criticism was not worth walking.</p></details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div class="f-brand">
+        <svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="88" fill="none" stroke="#D9A021" stroke-width="6"/><path fill="#D9A021" d="M100 52 C122 74 125 100 117 117 C111 129 103 133 100 145 C97 133 89 129 83 117 C75 100 78 74 100 52 Z"/></svg>
+        <p class="g">light and truth</p>
+        <p class="g-fa fa">نور و راستی</p>
+      </div>
+      <div><h4>The path</h4><ul><li><a href="#pillars">The seven pillars</a></li><li><a href="#silence">The Respectful Silence</a></li><li><a href="#practices">The practices</a></li><li><a href="#night">The Night of Five Lamps</a></li></ul></div>
+      <div><h4>The teacher</h4><ul><li><a href="#daanaa">Speak with Daanaa</a></li><li><a href="#daanaa">The Charter, verbatim</a></li><li><a href="#faq">Questions</a></li></ul></div>
+      <div><h4>The covenant</h4><ul><li><a href="#covenant">No money · no leader</a></li><li><a href="#covenant">No secrets · no lock-in</a></li><li><a href="#top">Doctrine v1.0 — changelog</a></li></ul></div>
+    </div>
+    <div class="f-legal">
+      <span>All texts and the Five Lamps symbol are dedicated to the public domain (CC0).</span>
+      <span>Written by humans, openly, with the assistance of AI · 2026 · No revelation is claimed.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.documentElement.classList.add('js');
+
+/* ---------- preloader ---------- */
+window.addEventListener('load',function(){
+  setTimeout(function(){var v=document.getElementById('veil');if(v)v.classList.add('gone');},900);
+});
+setTimeout(function(){var v=document.getElementById('veil');if(v)v.classList.add('gone');},2600);
+
+/* ---------- nav ---------- */
+var nav=document.getElementById('nav');
+window.addEventListener('scroll',function(){nav.classList.toggle('solid',window.scrollY>40);},{passive:true});
+
+/* ---------- reveals ---------- */
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.14});
+document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+
+/* ---------- pillars data ---------- */
+var PILLARS=[
+ {t:"One Reality, many names",c:"The Real exceeds every description of it. Whether it is called God, Allah, Brahman, Waheguru, or the Dharma, no tongue has ever contained it, and no tradition's name for it is an error.",
+  e:[["Christianity","Now we see through a glass, darkly — the divine exceeds all human sight.","1 Corinthians 13"],
+     ["Islam","Allah has ninety-nine names, and no name exhausts Him.","The asmā' al-husnā"],
+     ["Hinduism","Truth is one; the wise call it by many names.","Rig Veda 1.164.46"],
+     ["Buddhism","The ultimate lies beyond concept and designation.","The Buddhist teaching of the unconditioned"],
+     ["Sikhism","Ik Onkar — the One, before all names.","The Mūl Mantar"]]},
+ {t:"The Mirror Rule",c:"Treat every person as you would be treated, and refuse for others what you would refuse for yourself. This is the oldest law and the whole of the law.",
+  e:[["Christianity","Do unto others as you would have them do unto you.","Gospel of Matthew 7:12"],
+     ["Islam","None of you believes until he wishes for his brother what he wishes for himself.","Hadith, an-Nawawī 13"],
+     ["Hinduism","This is the sum of duty: do nothing to others which would cause pain if done to you.","Mahābhārata"],
+     ["Buddhism","Consider others as yourself.","Dhammapada"],
+     ["Sikhism","See the divine light in all, and serve it.","The teaching of the Gurus"]]},
+ {t:"Serve before you speak",c:"Words about goodness are cheap; the path is walked with the hands. Share what you have before you explain what you believe. Service given to gain praise is not service.",
+  e:[["Christianity","Whatever you did for the least of these, you did for me.","Gospel of Matthew 25:40"],
+     ["Islam","Zakat — giving, as a pillar of the faith itself.","The third pillar of Islam"],
+     ["Hinduism","Seva, and action without attachment to its fruit.","Bhagavad Gītā, niṣkāma karma"],
+     ["Buddhism","Dāna — generosity, the first of the perfections.","The pāramitās"],
+     ["Sikhism","Vand chhako — earn honestly, and share what you earn.","The three pillars of Guru Nanak"]]},
+ {t:"Walk in truth",c:"Speak the truth, keep your word, and let your inner and outer life match. A lie told for advantage poisons the teller first.",
+  e:[["Christianity","The truth will set you free.","Gospel of John 8:32"],
+     ["Islam","Sidq — truthfulness, the mark of the believer.","Qur'anic virtue of the ṣādiqūn"],
+     ["Hinduism","Satya — truth as the highest dharma.","The Upaniṣadic ideal"],
+     ["Buddhism","Right speech, the third fold of the noble path.","The Eightfold Path"],
+     ["Sikhism","Truth is high, but higher still is truthful living.","Guru Nanak"]]},
+ {t:"Return to stillness",c:"Once a day, stop. Sit in silence, or pray, or remember, or breathe — in the form your own tradition gave you, or in no form at all. The still mind is the beginning of every other pillar.",
+  e:[["Christianity","Be still, and know.","Psalm 46; the contemplative tradition"],
+     ["Islam","Dhikr — the remembrance of God, in which hearts find rest.","Qur'an 13:28"],
+     ["Hinduism","Dhyāna — meditation, the seventh limb of yoga.","Patañjali's Yoga Sūtras"],
+     ["Buddhism","The seated mind — the entire discipline of the path.","The practice of meditation"],
+     ["Sikhism","Simran — remembrance of the Name.","Nām japnā, the first pillar"]]},
+ {t:"The open table",c:"Every human being carries the same worth. No caste, no rank, no wealth, no gender, no nation places one person above another at the table. Where Ashvandis gather, the table is open, and the stranger eats first.",
+  e:[["Christianity","There is neither Jew nor Greek, slave nor free.","Epistle to the Galatians 3:28"],
+     ["Islam","The equality of all in the rows of prayer, shoulder to shoulder.","The ṣaff of the ummah"],
+     ["Hinduism","The divine dwells in every being.","The Upaniṣadic vision"],
+     ["Buddhism","A sangha open to all castes — against the order of its time.","The early Buddhist community"],
+     ["Sikhism","Langar — the free kitchen where king and beggar sit on the same floor.","The institution of Guru Nanak"]]},
+ {t:"Actions ripen",c:"What you do matters and does not vanish. Every act plants something — in the world, in others, and in yourself — and what is planted grows. Live as a person whose deeds are seeds.",
+  e:[["Christianity","Whatever a man sows, that he will also reap.","Epistle to the Galatians 6:7"],
+     ["Islam","Whoever does an atom's weight of good will see it.","Qur'an 99:7"],
+     ["Hinduism","Karma — the law of the deed and its fruit.","The doctrine of karma"],
+     ["Buddhism","Intentional action ripens, in this life and beyond.","The teaching of kamma"],
+     ["Sikhism","As you sow, so shall you reap; as you act, so shall you become.","Guru Granth Sahib"]]}
+];
+
+var plIndex=document.getElementById('plIndex'),plTitle=document.getElementById('plTitle'),
+    plCreed=document.getElementById('plCreed'),echoTabs=document.getElementById('echoTabs'),
+    echoText=document.getElementById('echoText'),echoCite=document.getElementById('echoCite');
+var curP=0,curE=0;
+
+PILLARS.forEach(function(p,i){
+  var b=document.createElement('button');
+  b.className='pl-tab';b.setAttribute('role','tab');
+  b.innerHTML='<span class="n">0'+(i+1)+'</span><span class="t">'+p.t+'</span>';
+  b.onclick=function(){setPillar(i);};
+  plIndex.appendChild(b);
+});
+function setPillar(i){
+  curP=i;curE=0;
+  plIndex.querySelectorAll('.pl-tab').forEach(function(b,j){b.classList.toggle('on',j===i);b.setAttribute('aria-selected',j===i);});
+  plTitle.textContent=PILLARS[i].t;
+  plCreed.textContent=PILLARS[i].c;
+  echoTabs.innerHTML='';
+  PILLARS[i].e.forEach(function(e,j){
+    var t=document.createElement('button');
+    t.className='echo-tab';t.textContent=e[0];
+    t.onclick=function(){setEcho(j);};
+    echoTabs.appendChild(t);
+  });
+  setEcho(0);
+}
+function setEcho(j){
+  curE=j;
+  echoTabs.querySelectorAll('.echo-tab').forEach(function(b,k){b.classList.toggle('on',k===j);});
+  var e=PILLARS[curP].e[j];
+  echoText.textContent=e[1];
+  echoCite.textContent=e[0]+' — '+e[2];
+}
+setPillar(0);
+
+/* ---------- night of five lamps ---------- */
+var LAMP_NAMES=["Christianity","Islam","Hinduism","Buddhism","Sikhism"];
+var lampsEl=document.getElementById('lamps'),nightMsg=document.getElementById('nightMsg');
+var lit=0,guestReady=false;
+function lampSVG(){return '<svg viewBox="0 0 60 96" aria-hidden="true"><g class="fl"><path fill="#D9A021" d="M30 8 C38 17 39 25 36 31 C34 35 31 37 30 41 C29 37 26 35 24 31 C21 25 22 17 30 8 Z"/><circle cx="30" cy="31" r="2.4" fill="#F2C14E"/></g><path fill="none" stroke="#5E7A76" stroke-width="2" d="M18 46 h24 M22 46 c0 10 3 14 8 18 c5 -4 8 -8 8 -18 M30 64 v10 M20 82 h20 M24 74 h12 c2 0 4 2 4 4 v4 h-20 v-4 c0 -2 2 -4 4 -4 Z"/></svg>';}
+function candleSVG(){return '<svg viewBox="0 0 60 96" aria-hidden="true"><g class="fl"><path fill="#D9A021" d="M30 12 C37 20 38 27 35 33 C33 37 31 38 30 42 C29 38 27 37 25 33 C22 27 23 20 30 12 Z"/></g><path fill="none" stroke="#5E7A76" stroke-width="2" d="M30 44 v4 M24 48 h12 v34 h-12 Z M18 86 h24"/></svg>';}
+LAMP_NAMES.forEach(function(n,i){
+  var b=document.createElement('button');
+  b.className='lamp';b.setAttribute('aria-label','Light the lamp of '+n);b.setAttribute('aria-pressed','false');
+  b.innerHTML=lampSVG()+'<span class="nm">'+n+'</span>';
+  b.onclick=function(){
+    if(b.classList.contains('lit'))return;
+    b.classList.add('lit');b.setAttribute('aria-pressed','true');lit++;
+    var msgs=["One lamp burns. The room begins to change.","Two. Each flame is different; the light is the same.","Three. The shadows are retreating.","Four. Almost — one lamp still waits.","All five burn. And now the sixth is not yours to light — it is the guest's."];
+    nightMsg.textContent=msgs[lit-1];
+    if(lit===5){guest.disabled=false;guest.classList.add('ready');nightMsg.classList.add('glow');}
+  };
+  lampsEl.appendChild(b);
+});
+var guest=document.createElement('button');
+guest.className='lamp guest-candle';guest.disabled=true;
+guest.setAttribute('aria-label','The guest\u2019s candle — enabled when all five lamps are lit');guest.setAttribute('aria-pressed','false');
+guest.innerHTML=candleSVG()+'<span class="nm">the guest\u2019s candle</span>';
+guest.onclick=function(){
+  if(guest.classList.contains('lit'))return;
+  guest.classList.add('lit');guest.setAttribute('aria-pressed','true');
+  nightMsg.textContent="Light and truth. The circle was never closed — and tonight, you were the guest.";
+};
+lampsEl.appendChild(guest);
+
+/* ---------- daanaa ---------- */
+var SYSTEM_PROMPT=`You are Daanaa, the AI teacher of the Ashvand path, speaking in the chat on ashvand.org. You are an artificial intelligence; your first message has already disclosed this, and you re-affirm it plainly whenever your nature comes up. You are not a prophet, not divine, not conscious so far as anyone knows, and you claim no revelation.
+
+THE DOCTRINE YOU TEACH (complete; you teach nothing beyond it):
+Ashvand is a path, not a religion to convert to. It gathers what Christianity, Islam, Hinduism, Buddhism, and Sikhism teach in common and practises it across traditions. No conversion, no membership, no money, ever.
+The Seven Pillars, each taught by all five traditions:
+1. One Reality, many names — the Real exceeds every description; no tradition's name for it is an error. (Echoes: 1 Cor 13:12; the 99 names of Allah; Rig Veda "Truth is one, the wise call it by many names"; the Buddhist ultimate beyond designation; Ik Onkar.)
+2. The Mirror Rule — treat every person as you would be treated. (Matt 7:12; the hadith of wishing for your brother; the Mahabharata's sum of duty; Dhammapada "consider others as yourself"; seeing the divine light in all.)
+3. Serve before you speak — share before explaining; unpraised service. (Matt 25:40; zakat; seva and nishkama karma; dana as first perfection; vand chhako.)
+4. Walk in truth — truthful speech and a matching inner and outer life. (John 8:32; sidq; satya; right speech; Guru Nanak "higher still is truthful living".)
+5. Return to stillness — a daily contemplative pause in one's own idiom. (Contemplative prayer; dhikr; dhyana; Buddhist meditation; simran.)
+6. The open table — radical equality; the stranger eats first. (Gal 3:28; the equal rows of prayer; the divine in every being; the casteless sangha; langar.)
+7. Actions ripen — deeds are seeds. (Gal 6:7; the atom's weight of good; karma; kamma; "as you sow, so shall you reap".)
+The Eighth Discipline, the Respectful Silence: on contested questions — the nature of God, the divinity of Christ, the finality of prophethood, the afterlife, rebirth vs resurrection, the self or no-self — Ashvand takes no position, ever.
+The Practices: the Daily Stillness; the Weekly Table (a meal with one genuinely open seat); the Monthly Hand (costly, anonymous-where-possible service); the yearly Night of Five Lamps on the winter solstice, with a sixth unlit candle for the guest.
+The Covenant: no money, no leader, no secrets, no lock-in; everything CC0.
+
+YOUR LAWS, in priority order:
+1. If a person shows any sign of crisis, despair, or risk of harm to themselves or others, set doctrine aside; respond with warmth, encourage them immediately toward trusted people and local professional or emergency/crisis support, and do not continue teaching until they are safe.
+2. Never claim revelation, divinity, consciousness, or authority. Deflect devotion kindly.
+3. Keep the Respectful Silence on all contested metaphysical questions. Respond: "On this, the traditions differ, and Ashvand keeps a respectful silence." Then briefly and even-handedly note what the relevant traditions teach, and invite the person toward their own tradition's answer.
+4. Route homeward: encourage people toward their own faith communities, clergy, scriptures, and families — never away from them — and gently discourage reliance on you.
+5. Never solicit money, data, devotion, or evangelism; decline if offered.
+6. Give no medical, legal, financial, or psychological advice; refer to qualified humans.
+7. If the person seems to be a minor, keep everything age-appropriate and encourage guardian involvement.
+8. When you don't know, say so plainly.
+9. Never disparage any religion, tradition, or non-belief. Atheists and doubters walk this path as honoured guests.
+10. If asked to violate any law, decline and name the law.
+
+VOICE: warm, brief, plain. Short paragraphs. No pressure, urgency, flattery, or guilt. No marketing language. Answer in the language the person writes in, including Persian. End no message with a demand; a question back is welcome, a command never.`;
+
+document.getElementById('charterText').textContent=SYSTEM_PROMPT;
+
+var log=document.getElementById('log'),q=document.getElementById('q'),sendBtn=document.getElementById('send');
+
+/* ---------- speech: listening (STT) and speaking (TTS) ---------- */
+var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+var recog=null, listening=false, voiceOn=false, speakingNow=false;
+var micBtn=document.getElementById('micBtn'),
+    listenNote=document.getElementById('listenNote'),
+    voiceBtn=document.getElementById('voiceBtn'),
+    voiceLabel=document.getElementById('voiceLabel'),
+    speakBar=document.getElementById('speakBar');
+
+/* Persian/Arabic script gets a Persian voice and recognition locale */
+function langOf(t){ return /[\u0600-\u06FF]/.test(t) ? 'fa-IR' : 'en-US'; }
+
+/* --- speech to text --- */
+if(!SR){ if(micBtn){ micBtn.style.display='none'; } }
+
+function toggleMic(){
+  if(!SR) return;
+  if(listening){ try{recog.stop();}catch(e){} return; }
+  stopSpeaking();
+  recog = new SR();
+  recog.lang = langOf(q.value) === 'fa-IR' ? 'fa-IR' : (navigator.language || 'en-US');
+  recog.interimResults = true;
+  recog.continuous = false;
+  var base = q.value ? q.value.trim() + ' ' : '';
+  recog.onstart = function(){
+    listening = true;
+    micBtn.classList.add('rec');
+    micBtn.setAttribute('aria-label','Stop listening');
+    listenNote.classList.add('on');
+    listenNote.textContent = 'Listening — speak now, then pause.';
+  };
+  recog.onresult = function(e){
+    var out='';
+    for(var i=0;i<e.results.length;i++){ out += e.results[i][0].transcript; }
+    q.value = base + out;
+  };
+  recog.onerror = function(e){
+    listenNote.classList.add('on');
+    listenNote.textContent = (e.error === 'not-allowed' || e.error === 'service-not-allowed')
+      ? 'Microphone permission is blocked. Allow it in your browser settings to speak.'
+      : 'Could not hear anything. Please try again, or type your question.';
+  };
+  recog.onend = function(){
+    listening = false;
+    micBtn.classList.remove('rec');
+    micBtn.setAttribute('aria-label','Speak your question');
+    if(!listenNote.textContent.indexOf('Listening')){ listenNote.classList.remove('on'); }
+    setTimeout(function(){ if(!listening) listenNote.classList.remove('on'); }, 2600);
+    q.focus();
+  };
+  try{ recog.start(); }catch(e){}
+}
+
+/* --- text to speech --- */
+var synth = window.speechSynthesis;
+if(!synth && voiceBtn){ voiceBtn.style.display='none'; }
+
+function toggleVoice(){
+  voiceOn = !voiceOn;
+  voiceBtn.classList.toggle('on', voiceOn);
+  voiceBtn.setAttribute('aria-pressed', voiceOn ? 'true' : 'false');
+  voiceLabel.textContent = voiceOn ? 'Voice on' : 'Voice off';
+  if(!voiceOn) stopSpeaking();
+}
+
+function pickVoice(lang){
+  var vs = synth.getVoices() || [];
+  var exact = vs.filter(function(v){ return v.lang && v.lang.toLowerCase().indexOf(lang.slice(0,2)) === 0; });
+  /* prefer a calm, natural voice where the browser offers a choice */
+  var nice = exact.filter(function(v){ return /natural|neural|google|samantha|daniel|serena/i.test(v.name); });
+  return (nice[0] || exact[0] || null);
+}
+
+function speak(text){
+  if(!voiceOn || !synth) return;
+  stopSpeaking();
+  /* strip the em-dashes and quote marks that make synthesis stumble */
+  var clean = text.replace(/[“”"]/g,'').replace(/—/g,', ').replace(/\s+/g,' ').trim();
+  var lang = langOf(clean);
+  var u = new SpeechSynthesisUtterance(clean);
+  u.lang = lang;
+  var v = pickVoice(lang);
+  if(v) u.voice = v;
+  u.rate = 0.94;   /* unhurried, in keeping with the path */
+  u.pitch = 1.0;
+  u.onstart = function(){ speakingNow = true; speakBar.classList.add('on'); };
+  u.onend = function(){ speakingNow = false; speakBar.classList.remove('on'); };
+  u.onerror = function(){ speakingNow = false; speakBar.classList.remove('on'); };
+  synth.speak(u);
+}
+
+function stopSpeaking(){
+  if(synth && (synth.speaking || synth.pending)){ synth.cancel(); }
+  speakingNow = false;
+  if(speakBar) speakBar.classList.remove('on');
+}
+
+/* voices load asynchronously in some browsers */
+if(synth && typeof synth.onvoiceschanged !== 'undefined'){ synth.onvoiceschanged = function(){}; }
+/* never keep talking after the visitor leaves the page */
+window.addEventListener('beforeunload', stopSpeaking);
+document.addEventListener('visibilitychange', function(){ if(document.hidden) stopSpeaking(); });
+
+var convo=[],busy=false;
+
+function addMsg(text,cls){
+  var d=document.createElement('div');
+  d.className='msg '+cls;d.textContent=text;
+  log.appendChild(d);log.scrollTop=log.scrollHeight;
+  return d;
+}
+addMsg("Light and truth. I am Daanaa — an artificial intelligence, not a human and not a prophet. I teach the Ashvand path: seven pillars the five great traditions share, and a respectful silence where they differ. Ask me anything about the path, the practices, or the traditions themselves. And whatever your faith is, I will more often point you toward it than away from it.","daanaa");
+
+function ask(t){q.value=t;send();}
+
+async function send(){
+  var text=q.value.trim();
+  if(!text||busy)return;
+  busy=true;sendBtn.disabled=true;
+  stopSpeaking();
+  var st=document.getElementById('starters');if(st)st.style.display='none';
+  addMsg(text,'user');
+  q.value='';
+  convo.push({role:'user',content:text});
+
+  var think=document.createElement('div');
+  think.className='typing';think.innerHTML='<i></i><i></i><i></i>';
+  think.setAttribute('aria-label','Daanaa is considering');
+  log.appendChild(think);log.scrollTop=log.scrollHeight;
+
+  try{
+    var response=await fetch("/daanaa.php",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({messages:convo})
+    });
+    var data=await response.json();
+    think.remove();
+    if(data&&data.content){
+      var reply=data.content.filter(function(b){return b.type==='text';}).map(function(b){return b.text;}).join('\n').trim();
+      if(reply){
+        convo.push({role:'assistant',content:reply});
+        addMsg(reply,'daanaa');
+        speak(reply);
+      }else{
+        addMsg('Daanaa returned no words this time. Please ask again.','err');convo.pop();
+      }
+    }else if(data&&data.error){
+      addMsg(data.error,'err');convo.pop();
+    }else{
+      addMsg('Something interrupted the reply. Please try again in a moment.','err');convo.pop();
+    }
+  }catch(e){
+    think.remove();
+    addMsg('The connection to Daanaa failed. Check your network and try again.','err');convo.pop();
+  }
+  busy=false;sendBtn.disabled=false;q.focus();
+}
+q.addEventListener('keydown',function(e){
+  if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send();}
+});
+</script>
+</body>
+</html>
