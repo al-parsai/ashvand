@@ -53,15 +53,51 @@ jobs:
           fi
           echo "Clean: no key material in the tree."
 
+      # ---------------------------------------------------------------
+      # SiteGround intermittently drops the first SSH connection, so a
+      # single ssh-keyscan is unreliable — retry it.
+      #
+      # The retrieved host key is checked against a fingerprint pinned
+      # here, recorded from a verified manual login on 2026-08-10. That
+      # is stronger than trust-on-first-use: a MITM during the scan is
+      # caught rather than cached. If SiteGround legitimately rotates
+      # its host key, this step fails loudly and the fingerprint below
+      # must be updated deliberately.
+      # ---------------------------------------------------------------
       - name: Configure SSH
+        env:
+          EXPECTED_HOST_FP: "SHA256:GGQa+ugTNisCm+Rv6LvbJx694twrBVv+BlKi2enfjdg"
         run: |
           set -euo pipefail
           mkdir -p ~/.ssh && chmod 700 ~/.ssh
           printf '%s\n' "${{ secrets.SG_SSH_KEY }}" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
-          # Pin the host key rather than blindly trusting on first use.
-          ssh-keyscan -p "$SG_PORT" -H "${{ secrets.SG_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null
-          test -s ~/.ssh/known_hosts
+          ssh-keygen -y -f ~/.ssh/deploy_key > /dev/null \
+            || { echo "::error::SG_SSH_KEY is not a valid passphrase-free private key."; exit 1; }
+
+          for attempt in 1 2 3 4 5; do
+            ssh-keyscan -T 20 -t ed25519 -p "$SG_PORT" "${{ secrets.SG_HOST }}" > /tmp/hostkey 2>/tmp/hostkey.err || true
+            if [ -s /tmp/hostkey ]; then
+              echo "Host key retrieved on attempt $attempt."
+              break
+            fi
+            echo "Attempt $attempt returned no host key; retrying in $((attempt * 5))s"
+            sed 's/^/  keyscan: /' /tmp/hostkey.err || true
+            sleep $((attempt * 5))
+          done
+
+          if [ ! -s /tmp/hostkey ]; then
+            echo "::error::Could not retrieve the SiteGround host key after 5 attempts. The server may be refusing connections from this runner. Re-run the workflow; if it keeps failing, check Site Tools for an IP block."
+            exit 1
+          fi
+
+          GOT_FP="$(ssh-keygen -lf /tmp/hostkey | awk '{print $2}')"
+          if [ "$GOT_FP" != "$EXPECTED_HOST_FP" ]; then
+            echo "::error::Host key fingerprint mismatch. Expected $EXPECTED_HOST_FP but got $GOT_FP. Refusing to connect. Either SiteGround rotated the key (update EXPECTED_HOST_FP in this workflow) or something is intercepting the connection."
+            exit 1
+          fi
+          echo "Host fingerprint verified: $GOT_FP"
+          cat /tmp/hostkey >> ~/.ssh/known_hosts
 
       # ---------------------------------------------------------------
       # rsync includes dotfiles by default, so .htaccess ships. That
