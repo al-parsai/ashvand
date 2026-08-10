@@ -121,38 +121,69 @@ jobs:
             ./ "${{ secrets.SG_USER }}@${{ secrets.SG_HOST }}:${{ secrets.SG_PATH }}"
 
       # ---------------------------------------------------------------
-      # The manual post-deploy check from DEPLOY.md, automated.
-      # If config.php ever renders, the key is exposed and this fails loudly.
+      # AUTHORITATIVE CHECK. Runs on the server itself, so it is not
+      # subject to the bot-protection layer that answers GitHub's runner
+      # IPs with HTTP 202 instead of passing them through to Apache.
       # ---------------------------------------------------------------
-      - name: Post-deploy safety checks
+      - name: Verify on the server
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/deploy_key -p "$SG_PORT" -o StrictHostKeyChecking=yes \
+            "${{ secrets.SG_USER }}@${{ secrets.SG_HOST }}" 'bash -s' -- "${{ secrets.SG_PATH }}" \
+            < .github/verify-remote.sh
+
+      # ---------------------------------------------------------------
+      # EXTERNAL CANARY. Best effort only. SiteGround's bot protection
+      # answers datacenter IPs with 202 regardless of the real response,
+      # so this must never fail a deploy on status code alone -- that
+      # would be a false alarm on every run. It fails hard on one thing
+      # only: key material actually appearing in a response body, which
+      # is unambiguous no matter what the status code says.
+      # ---------------------------------------------------------------
+      - name: External canary
+        if: always()
         run: |
           set -uo pipefail
+          UA='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36'
           fail=0
-          sleep 5
+          probe() {
+            curl -sSL -A "$UA" -H 'Accept-Language: en-US,en;q=0.9' \
+                 -o "$2" -w '%{http_code}' --max-time 20 "$1" 2>/dev/null || echo 000
+          }
 
-          code=$(curl -sS -o /tmp/cfg.txt -w '%{http_code}' "$SITE_URL/config.php" || echo 000)
+          code=$(probe "$SITE_URL/config.php" /tmp/cfg.txt)
           echo "config.php  -> HTTP $code"
-          case "$code" in
-            403|404) echo "  ok: config.php is not served" ;;
-            *) echo "::error::config.php returned $code, expected 403. .htaccess may be missing — ROTATE THE API KEY."; fail=1 ;;
-          esac
-          if grep -qi 'ANTHROPIC_API_KEY' /tmp/cfg.txt 2>/dev/null; then
-            echo "::error::config.php source is being served in plaintext. ROTATE THE API KEY NOW."; fail=1
+          if grep -qi 'ANTHROPIC_API_KEY\|sk-ant-' /tmp/cfg.txt 2>/dev/null; then
+            echo "::error::config.php served key material. ROTATE THE API KEY NOW."
+            fail=1
+          else
+            case "$code" in
+              403|404) echo "  ok: refused" ;;
+              202)     echo "::warning::Inconclusive - bot protection answered 202. The server-side check is authoritative." ;;
+              *)       echo "::warning::Unexpected status $code, but no key material in the body." ;;
+            esac
           fi
 
-          home=$(curl -sS -o /tmp/home.html -w '%{http_code}' "$SITE_URL/" || echo 000)
-          echo "homepage    -> HTTP $home"
-          [ "$home" = "200" ] || { echo "::error::homepage returned $home"; fail=1; }
-          grep -qi 'ashvand' /tmp/home.html || { echo "::error::homepage did not contain expected content"; fail=1; }
+          code=$(probe "$SITE_URL/" /tmp/home.html)
+          echo "homepage    -> HTTP $code"
+          if [ "$code" = "200" ]; then
+            grep -qi 'ashvand' /tmp/home.html \
+              && echo "  ok: real content served" \
+              || echo "::warning::200 but expected content not found"
+          else
+            echo "::warning::Inconclusive - status $code"
+          fi
 
-          dn=$(curl -sS -o /tmp/dn.txt -w '%{http_code}' "$SITE_URL/daanaa.php" || echo 000)
-          echo "daanaa.php  -> HTTP $dn"
-          case "$dn" in
-            5*|000) echo "::error::daanaa.php returned $dn — the chat proxy may be broken."; fail=1 ;;
-            *) echo "  ok: endpoint is alive" ;;
-          esac
+          code=$(probe "$SITE_URL/daanaa.php" /tmp/dn.txt)
+          echo "daanaa.php  -> HTTP $code"
           if grep -qi 'ANTHROPIC_API_KEY\|<?php' /tmp/dn.txt 2>/dev/null; then
-            echo "::error::daanaa.php is serving PHP source instead of executing it. ROTATE THE API KEY NOW."; fail=1
+            echo "::error::daanaa.php served PHP source instead of executing. ROTATE THE API KEY NOW."
+            fail=1
+          else
+            case "$code" in
+              5*|000) echo "::warning::Inconclusive or server error: $code" ;;
+              *)      echo "  ok: endpoint alive" ;;
+            esac
           fi
 
           exit $fail
