@@ -6,11 +6,17 @@
 .git/
 .github/
 .gitignore
+.gitattributes
 .deployignore
+.vscode/
 _to_delete/
 
 # --- THE SECRET. Lives only on the server. Never sync, never delete. ---
 config.php
+
+# --- the template. Harmless (placeholder key only), but there is no reason
+#     to serve a map of the config layout to the public web. ---
+config.sample.php
 
 # --- runtime state written by daanaa.php on the server ---
 .ratelimit/

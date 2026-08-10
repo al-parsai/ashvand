@@ -1,0 +1,11 @@
+# The server is Linux. Windows editors must not rewrite these with CRLF —
+# that would produce a whole-file diff and ship different bytes to production.
+* text=auto eol=lf
+
+# Binary: never touch.
+*.png  binary
+*.ico  binary
+*.jpg  binary
+*.webp binary
+*.woff  binary
+*.woff2 binary
