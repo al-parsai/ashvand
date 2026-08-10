@@ -1,0 +1,128 @@
+name: Deploy to SiteGround
+
+# Push to main -> the live site updates. Nothing else needs doing.
+#
+# The SiteGround credentials live in GitHub repository secrets and are never
+# stored in this repo:
+#   SG_HOST     hostname or IP of the SiteGround server
+#   SG_USER     SSH username from Site Tools > Devs > SSH Keys Manager
+#   SG_PATH     absolute path to the web root, WITH a trailing slash
+#               e.g. /home/customer/www/ashvand.org/public_html/
+#   SG_SSH_KEY  the full private key, including the BEGIN/END lines
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      prune:
+        description: "Also delete remote files that no longer exist in the repo"
+        type: boolean
+        default: false
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+env:
+  # SiteGround runs SSH/SFTP on a non-standard port.
+  SG_PORT: "18765"
+  SITE_URL: "https://ashvand.org"
+
+jobs:
+  deploy:
+    name: rsync to public_html
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # ---------------------------------------------------------------
+      # Refuse to ship if the API key has leaked into the repo.
+      # ---------------------------------------------------------------
+      - name: Pre-flight secret scan
+        run: |
+          set -euo pipefail
+          if [ -e config.php ]; then
+            echo "::error::config.php exists in the repo. It must live only on the server."
+            exit 1
+          fi
+          if grep -rIn --exclude-dir=.git --exclude=config.sample.php \
+               -E 'sk-ant-[A-Za-z0-9_-]{20,}' . ; then
+            echo "::error::A live-looking Anthropic API key is present in the tree. Aborting."
+            exit 1
+          fi
+          echo "Clean: no key material in the tree."
+
+      - name: Configure SSH
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
+          printf '%s\n' "${{ secrets.SG_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          # Pin the host key rather than blindly trusting on first use.
+          ssh-keyscan -p "$SG_PORT" -H "${{ secrets.SG_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null
+          test -s ~/.ssh/known_hosts
+
+      # ---------------------------------------------------------------
+      # rsync includes dotfiles by default, so .htaccess ships. That
+      # matters: .htaccess is what makes config.php return 403.
+      #
+      # --delete is OFF unless you run the workflow manually and tick
+      # "prune". Excluded paths (config.php, .ratelimit/) are protected
+      # from deletion either way.
+      # ---------------------------------------------------------------
+      - name: Deploy
+        run: |
+          set -euo pipefail
+          PRUNE=""
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.prune }}" = "true" ]; then
+            PRUNE="--delete"
+            echo "Pruning enabled: remote files absent from the repo will be removed."
+          fi
+          rsync -rltvz --checksum $PRUNE \
+            --exclude-from=.deployignore \
+            -e "ssh -i ~/.ssh/deploy_key -p $SG_PORT -o StrictHostKeyChecking=yes" \
+            ./ "${{ secrets.SG_USER }}@${{ secrets.SG_HOST }}:${{ secrets.SG_PATH }}"
+
+      # ---------------------------------------------------------------
+      # The manual post-deploy check from DEPLOY.md, automated.
+      # If config.php ever renders, the key is exposed and this fails loudly.
+      # ---------------------------------------------------------------
+      - name: Post-deploy safety checks
+        run: |
+          set -uo pipefail
+          fail=0
+          sleep 5
+
+          code=$(curl -sS -o /tmp/cfg.txt -w '%{http_code}' "$SITE_URL/config.php" || echo 000)
+          echo "config.php  -> HTTP $code"
+          case "$code" in
+            403|404) echo "  ok: config.php is not served" ;;
+            *) echo "::error::config.php returned $code, expected 403. .htaccess may be missing — ROTATE THE API KEY."; fail=1 ;;
+          esac
+          if grep -qi 'ANTHROPIC_API_KEY' /tmp/cfg.txt 2>/dev/null; then
+            echo "::error::config.php source is being served in plaintext. ROTATE THE API KEY NOW."; fail=1
+          fi
+
+          home=$(curl -sS -o /tmp/home.html -w '%{http_code}' "$SITE_URL/" || echo 000)
+          echo "homepage    -> HTTP $home"
+          [ "$home" = "200" ] || { echo "::error::homepage returned $home"; fail=1; }
+          grep -qi 'ashvand' /tmp/home.html || { echo "::error::homepage did not contain expected content"; fail=1; }
+
+          dn=$(curl -sS -o /tmp/dn.txt -w '%{http_code}' "$SITE_URL/daanaa.php" || echo 000)
+          echo "daanaa.php  -> HTTP $dn"
+          case "$dn" in
+            5*|000) echo "::error::daanaa.php returned $dn — the chat proxy may be broken."; fail=1 ;;
+            *) echo "  ok: endpoint is alive" ;;
+          esac
+          if grep -qi 'ANTHROPIC_API_KEY\|<?php' /tmp/dn.txt 2>/dev/null; then
+            echo "::error::daanaa.php is serving PHP source instead of executing it. ROTATE THE API KEY NOW."; fail=1
+          fi
+
+          exit $fail
+
+      - name: Reminder
+        if: success()
+        run: |
+          echo "Deployed. SiteGround caches aggressively — if the change is not visible,"
+          echo "flush the cache in Site Tools > Speed > Caching, then hard-refresh."

@@ -1,0 +1,27 @@
+# Everything listed here is (a) never uploaded to SiteGround and
+# (b) protected from deletion by rsync --delete, because rsync never
+# removes files it has been told to exclude.
+
+# --- repo plumbing, has no business on a web server ---
+.git/
+.github/
+.gitignore
+.deployignore
+_to_delete/
+
+# --- THE SECRET. Lives only on the server. Never sync, never delete. ---
+config.php
+
+# --- runtime state written by daanaa.php on the server ---
+.ratelimit/
+
+# --- i18n build sources (only the built pages should ship) ---
+node_modules/
+package.json
+package-lock.json
+build.js
+template.html
+i18n/
+
+# --- documentation ---
+*.md
