@@ -15,6 +15,10 @@ config.php
 # --- runtime state written by daanaa.php on the server ---
 .ratelimit/
 
+# --- Let's Encrypt ACME challenge dir. Deleting this can break
+#     certificate renewal. Never sync, never delete. ---
+.well-known/
+
 # --- i18n build sources (only the built pages should ship) ---
 node_modules/
 package.json
