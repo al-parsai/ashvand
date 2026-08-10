@@ -1,0 +1,16 @@
+# SiteGround host keys for ashvand.org, pinned deliberately.
+#
+# Recorded from a verified interactive SSH session on 2026-08-10 and
+# cross-checked: the ed25519 line hashes to
+#   SHA256:GGQa+ugTNisCm+Rv6LvbJx694twrBVv+BlKi2enfjdg
+# and the rsa line to
+#   SHA256:VHfFobG7iXWhXrCpvMcZVtNZvKmKXizIYMxKPrI5iPE
+# which are the two fingerprints that session reported.
+#
+# These are PUBLIC keys. SiteGround hands them to every client that connects;
+# publishing them is what lets a client detect being redirected elsewhere.
+#
+# If SiteGround rotates its host key the deploy will fail loudly. Verify the
+# new key from a trusted interactive session before changing anything here.
+[c1117079.sgvps.net]:18765 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM5DtqiXl8A1CwhbTzh7XV9TuYUoHFA8sQzma1Fuaf0b
+[c1117079.sgvps.net]:18765 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCD1MkuGV8cqNd/XeiH/Vpow/bcVPlL1WHTVXWvVsGgFdvTe8wbRQ5vm+qW1tMnAIaKkB+HvyOrtgUSRpr8pngTtTNt2NSFAYSGp7quAHb0ryibPmyU02MHC+UW2Yr/fFu4Xnt/aIeMsfny9tp0LmBoCox2e2MMVV2/OsiLBVeQBrIXC/51Y+6TJA8aY5YoaOV7et57G1p/eYaC0Zb/bpQySm2ysmgVanYJIxFqN7D+CjfLyIpxNQ/W8OVbZf/dURSYMrsQe8NS3eCNsZtD44GLAR35nRrkeBgJ/aAoMC56sK1QoZ+sZN/kbBxtqkWW43eowNOs91c3HCbiV7zqyMYd

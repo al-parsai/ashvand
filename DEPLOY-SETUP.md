@@ -165,17 +165,23 @@ Confirm the truth from an ordinary browser: `https://ashvand.org/config.php`
 must show 403.
 
 **"Could not retrieve the SiteGround host key after 5 attempts."**
-SiteGround intermittently drops the first SSH connection — this also happens on
-a normal manual login. The workflow already retries five times with backoff.
-If it still fails, re-run the workflow; if it fails repeatedly, check Site Tools
-for an IP block.
+This message no longer exists — the workflow does not scan any more. On run #4
+`ssh-keyscan` failed 5/5 attempts while authenticated SSH from the same runner
+worked, which is consistent with SiteGround's anti-abuse layer dropping it:
+keyscan connects and disconnects without ever authenticating, which looks like
+a port scan. Host keys are now pinned in `.github/known_hosts`, verified against
+a fingerprint in the workflow. No network call, no flakiness, and no window in
+which an interceptor could supply the key we then trust.
 
-**"Host key fingerprint mismatch."**
-The workflow pins SiteGround's host fingerprint
-(`SHA256:GGQa+ugTNisCm+Rv6LvbJx694twrBVv+BlKi2enfjdg`, recorded 2026-08-10).
-Either SiteGround rotated the host key — verify manually, then update
-`EXPECTED_HOST_FP` in `deploy.yml` — or something is intercepting the
-connection. Do not "fix" this by disabling the check.
+**"Pinned host key is X but this workflow expects Y."**
+`.github/known_hosts` and `EXPECTED_HOST_FP` in `deploy.yml` disagree — someone
+changed one without the other. Verify the real key from a trusted interactive
+session (`ssh -v`), then update both together.
+
+**The deploy fails at the rsync step with a host key error.**
+SiteGround rotated its host key. Verify the new one from a trusted interactive
+session, then update `.github/known_hosts` and `EXPECTED_HOST_FP`. Do not "fix"
+this by disabling the check or adding `StrictHostKeyChecking=no`.
 
 **"LEAKED: <file> must not be on the server."**
 Repo plumbing reached the web root. Delete it in File Manager and check

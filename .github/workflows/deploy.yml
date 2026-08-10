@@ -54,17 +54,6 @@ jobs:
           echo "Clean: no key material in the tree."
 
       # ---------------------------------------------------------------
-      # SiteGround intermittently drops the first SSH connection, so a
-      # single ssh-keyscan is unreliable — retry it.
-      #
-      # The retrieved host key is checked against a fingerprint pinned
-      # here, recorded from a verified manual login on 2026-08-10. That
-      # is stronger than trust-on-first-use: a MITM during the scan is
-      # caught rather than cached. If SiteGround legitimately rotates
-      # its host key, this step fails loudly and the fingerprint below
-      # must be updated deliberately.
-      # ---------------------------------------------------------------
-      # ---------------------------------------------------------------
       # Build the static language editions. Generated pages are never
       # committed: template.html + i18n/*.json are the source of truth,
       # and the build fails loudly on any missing or unknown key rather
@@ -87,6 +76,18 @@ jobs:
           fi
           echo "Editions built:"; find dist -name index.html | sort | sed 's/^/  /'
 
+      # ---------------------------------------------------------------
+      # Host keys are PINNED in .github/known_hosts, not scanned.
+      #
+      # ssh-keyscan connects and disconnects without ever authenticating,
+      # which is indistinguishable from a port scan; SiteGround's anti-abuse
+      # layer appears to drop it. It failed 5/5 attempts on run #4 while
+      # authenticated SSH from the same runner worked fine.
+      #
+      # Pinning is also strictly stronger than scanning: there is no window
+      # in which the key we trust could be supplied by an interceptor. A
+      # genuine host-key rotation fails the run, by design.
+      # ---------------------------------------------------------------
       - name: Configure SSH
         env:
           EXPECTED_HOST_FP: "SHA256:GGQa+ugTNisCm+Rv6LvbJx694twrBVv+BlKi2enfjdg"
@@ -98,29 +99,15 @@ jobs:
           ssh-keygen -y -f ~/.ssh/deploy_key > /dev/null \
             || { echo "::error::SG_SSH_KEY is not a valid passphrase-free private key."; exit 1; }
 
-          for attempt in 1 2 3 4 5; do
-            ssh-keyscan -T 20 -t ed25519 -p "$SG_PORT" "${{ secrets.SG_HOST }}" > /tmp/hostkey 2>/tmp/hostkey.err || true
-            if [ -s /tmp/hostkey ]; then
-              echo "Host key retrieved on attempt $attempt."
-              break
-            fi
-            echo "Attempt $attempt returned no host key; retrying in $((attempt * 5))s"
-            sed 's/^/  keyscan: /' /tmp/hostkey.err || true
-            sleep $((attempt * 5))
-          done
-
-          if [ ! -s /tmp/hostkey ]; then
-            echo "::error::Could not retrieve the SiteGround host key after 5 attempts. The server may be refusing connections from this runner. Re-run the workflow; if it keeps failing, check Site Tools for an IP block."
-            exit 1
-          fi
-
-          GOT_FP="$(ssh-keygen -lf /tmp/hostkey | awk '{print $2}')"
+          test -s .github/known_hosts \
+            || { echo "::error::.github/known_hosts is missing from the repo."; exit 1; }
+          GOT_FP="$(ssh-keygen -lf .github/known_hosts | awk '/ED25519/{print $2}')"
           if [ "$GOT_FP" != "$EXPECTED_HOST_FP" ]; then
-            echo "::error::Host key fingerprint mismatch. Expected $EXPECTED_HOST_FP but got $GOT_FP. Refusing to connect. Either SiteGround rotated the key (update EXPECTED_HOST_FP in this workflow) or something is intercepting the connection."
+            echo "::error::Pinned host key is $GOT_FP but this workflow expects $EXPECTED_HOST_FP. One of the two was changed without the other; verify from a trusted interactive session before touching either."
             exit 1
           fi
-          echo "Host fingerprint verified: $GOT_FP"
-          cat /tmp/hostkey >> ~/.ssh/known_hosts
+          install -m 600 .github/known_hosts ~/.ssh/known_hosts
+          echo "Host key pinned and verified: $GOT_FP"
 
       # ---------------------------------------------------------------
       # rsync includes dotfiles by default, so .htaccess ships. That
